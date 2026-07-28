@@ -1,0 +1,157 @@
+// Drug-Food Interaction Checker - Prisma Schema
+// PostgreSQL with pg_trgm extension for fuzzy search
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// ENUMS
+// ============================================
+
+enum AuthProvider {
+  email
+  google
+  kakao
+}
+
+enum Language {
+  ko
+  en
+}
+
+enum RiskLevel {
+  caution
+  warning
+  contraindicated
+}
+
+// ============================================
+// USER & AUTH
+// ============================================
+
+model User {
+  id            String       @id @default(uuid())
+  email         String       @unique
+  name          String
+  passwordHash  String?      @map("password_hash")
+  provider      AuthProvider @default(email)
+  providerId    String?      @map("provider_id")
+  language      Language     @default(ko)
+  refreshToken  String?      @map("refresh_token")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+
+  // Relations
+  medicineBoxItems MedicineBoxItem[]
+
+  // Indexes
+  @@unique([provider, providerId])
+  @@map("users")
+}
+
+// ============================================
+// DRUG & INGREDIENTS
+// ============================================
+
+model Drug {
+  id            String   @id @default(uuid())
+  nameKo        String   @map("name_ko")
+  nameEn        String   @map("name_en")
+  category      String
+  descriptionKo String?  @map("description_ko")
+  descriptionEn String?  @map("description_en")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  // Relations
+  ingredients      DrugIngredient[]
+  medicineBoxItems MedicineBoxItem[]
+
+  // Indexes (trigram indexes created via migration SQL)
+  @@map("drugs")
+}
+
+model DrugIngredient {
+  id     String @id @default(uuid())
+  drugId String @map("drug_id")
+  nameKo String @map("name_ko")
+  nameEn String @map("name_en")
+
+  // Relations
+  drug         Drug          @relation(fields: [drugId], references: [id], onDelete: Cascade)
+  interactions Interaction[]
+
+  // Indexes
+  @@index([drugId])
+  @@map("drug_ingredients")
+}
+
+// ============================================
+// FOOD
+// ============================================
+
+model Food {
+  id        String   @id @default(uuid())
+  nameKo    String   @map("name_ko")
+  nameEn    String   @map("name_en")
+  category  String
+  nutrients String[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  interactions Interaction[]
+
+  @@map("foods")
+}
+
+// ============================================
+// INTERACTION (Drug-Food)
+// ============================================
+
+model Interaction {
+  id            String    @id @default(uuid())
+  ingredientId  String    @map("ingredient_id")
+  foodId        String    @map("food_id")
+  riskLevel     RiskLevel @map("risk_level")
+  reasonKo      String    @map("reason_ko")
+  reasonEn      String    @map("reason_en")
+  sideEffectsKo String    @map("side_effects_ko")
+  sideEffectsEn String    @map("side_effects_en")
+  timeGapHours  Int?      @map("time_gap_hours")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  ingredient DrugIngredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  food       Food           @relation(fields: [foodId], references: [id], onDelete: Cascade)
+
+  // Indexes
+  @@unique([ingredientId, foodId])
+  @@index([ingredientId])
+  @@index([foodId])
+  @@map("interactions")
+}
+
+// ============================================
+// MEDICINE BOX
+// ============================================
+
+model MedicineBoxItem {
+  id      String   @id @default(uuid())
+  userId  String   @map("user_id")
+  drugId  String   @map("drug_id")
+  addedAt DateTime @default(now()) @map("added_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  drug Drug @relation(fields: [drugId], references: [id], onDelete: Cascade)
+
+  // Indexes
+  @@unique([userId, drugId])
+  @@index([userId])
+  @@map("medicine_box_items")
+}

@@ -1,0 +1,59 @@
+{
+  "common": {
+    "appName": "Drug-Food Interaction Checker",
+    "search": "Search",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "language": "Language",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noResults": "No results found"
+  },
+  "nav": {
+    "home": "Home",
+    "medicineBox": "My Medicine Box",
+    "analysis": "Analysis",
+    "profile": "Profile"
+  },
+  "search": {
+    "placeholder": "Search by drug name or ingredient",
+    "addToBox": "Add to Box",
+    "added": "Added",
+    "results": "Search Results",
+    "noResults": "No results found. Try a different keyword."
+  },
+  "medicineBox": {
+    "title": "My Medicine Box",
+    "empty": "Your medicine box is empty. Search for drugs to add.",
+    "remove": "Remove",
+    "count": "{count}/{max} items",
+    "full": "Medicine box is full (max {max} items)",
+    "analyze": "Analyze Interactions"
+  },
+  "analysis": {
+    "title": "Interaction Analysis Results",
+    "empty": "No drugs to analyze. Add drugs to your medicine box first.",
+    "caution": "Caution",
+    "warning": "Warning",
+    "contraindicated": "Contraindicated",
+    "food": "Foods to Avoid",
+    "reason": "Interaction Mechanism",
+    "sideEffects": "Side Effects",
+    "timeGap": "Recommended time gap: {hours} hours",
+    "summary": "{total} interactions found"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "googleLogin": "Login with Google",
+    "kakaoLogin": "Login with Kakao"
+  }
+}

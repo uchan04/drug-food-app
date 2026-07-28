@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #c8ff00;
+    color: #0d0d0d;
+  }
+}
+
+@layer components {
+  .risk-caution {
+    background-color: rgba(120, 53, 15, 0.3);
+    color: #fbbf24;
+    border-color: rgba(180, 83, 9, 0.5);
+  }
+  .risk-warning {
+    background-color: rgba(124, 45, 18, 0.3);
+    color: #fb923c;
+    border-color: rgba(194, 65, 12, 0.5);
+  }
+  .risk-contraindicated {
+    background-color: rgba(127, 29, 29, 0.3);
+    color: #f87171;
+    border-color: rgba(185, 28, 28, 0.5);
+  }
+}

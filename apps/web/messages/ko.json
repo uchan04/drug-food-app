@@ -1,0 +1,59 @@
+{
+  "common": {
+    "appName": "약-음식 상성 체커",
+    "search": "검색",
+    "login": "로그인",
+    "register": "회원가입",
+    "logout": "로그아웃",
+    "language": "언어",
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "noResults": "결과가 없습니다"
+  },
+  "nav": {
+    "home": "홈",
+    "medicineBox": "내 약상자",
+    "analysis": "상성 분석",
+    "profile": "프로필"
+  },
+  "search": {
+    "placeholder": "약물명 또는 성분명을 검색하세요",
+    "addToBox": "약상자에 추가",
+    "added": "추가됨",
+    "results": "검색 결과",
+    "noResults": "검색 결과가 없습니다. 다른 키워드를 시도해보세요."
+  },
+  "medicineBox": {
+    "title": "내 약상자",
+    "empty": "약상자가 비어 있습니다. 약물을 검색하여 추가해보세요.",
+    "remove": "제거",
+    "count": "{count}/{max}개",
+    "full": "약상자가 가득 찼습니다 (최대 {max}개)",
+    "analyze": "상성 분석하기"
+  },
+  "analysis": {
+    "title": "상성 분석 결과",
+    "empty": "분석할 약물이 없습니다. 먼저 약상자에 약물을 추가해주세요.",
+    "caution": "주의",
+    "warning": "경고",
+    "contraindicated": "금기",
+    "food": "피해야 할 음식",
+    "reason": "상호작용 원리",
+    "sideEffects": "부작용",
+    "timeGap": "권장 시간 간격: {hours}시간",
+    "summary": "총 {total}건의 상호작용 발견"
+  },
+  "auth": {
+    "loginTitle": "로그인",
+    "registerTitle": "회원가입",
+    "email": "이메일",
+    "password": "비밀번호",
+    "name": "이름",
+    "loginButton": "로그인",
+    "registerButton": "회원가입",
+    "noAccount": "계정이 없으신가요?",
+    "hasAccount": "이미 계정이 있으신가요?",
+    "googleLogin": "Google로 로그인",
+    "kakaoLogin": "Kakao로 로그인"
+  }
+}
