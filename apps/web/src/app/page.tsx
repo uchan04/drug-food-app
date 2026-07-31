@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const tabs = [
   { id: 'search', label: 'SEARCH' },
+  { id: 'upload', label: 'UPLOAD' },
   { id: 'howto', label: 'HOW TO USE' },
 ];
 
@@ -65,6 +66,23 @@ export default function HomePage() {
             )}
           </section>
         </>
+      ) : activeTab === 'upload' ? (
+        <section className="max-w-[1400px] mx-auto px-6 pb-20">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-black/10 backdrop-blur-xl">
+            <div className="mb-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-accent/80">PRESCRIPTION UPLOAD</p>
+              <h2 className="mt-4 text-2xl font-bold text-white">처방전 파일 업로드 (데모)</h2>
+              <p className="mt-3 text-white/60 max-w-2xl">
+                처방전 파일을 업로드하면 데모 버전에서는 자리만 만들어드립니다. 실제 약물 자동 추가 기능은 추후 구현 예정입니다.
+              </p>
+            </div>
+            <label className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-white/20 bg-slate-950/70 p-10 text-center text-white/50 transition hover:border-accent hover:text-white">
+              <span className="mb-4 text-sm font-semibold text-white/80">파일을 드래그하거나 클릭하여 업로드하세요</span>
+              <input type="file" className="hidden" disabled aria-disabled="true" />
+              <span className="rounded-full bg-white/10 px-4 py-2 text-sm text-white/80">데모 버전</span>
+            </label>
+          </div>
+        </section>
       ) : (
         <section className="max-w-[1400px] mx-auto px-6 pb-20">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-black/10 backdrop-blur-xl">
@@ -73,6 +91,9 @@ export default function HomePage() {
               <h2 className="mt-4 text-3xl font-bold text-white">간단한 3단계로 약-음식 상호작용 확인</h2>
               <p className="mt-3 text-white/60 max-w-2xl mx-auto">
                 약물 검색부터 내 약상자 저장, 상호작용 분석까지 한 번에 확인하세요.
+              </p>
+              <p className="mt-3 text-white/60 max-w-2xl mx-auto">
+                UPLOAD 탭에서는 처방전 파일 업로드 자리만 데모로 제공합니다. 실제 약물 자동 추가 기능은 추후 지원될 예정입니다.
               </p>
             </div>
 
@@ -136,6 +157,7 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
     </div>
   );
 }

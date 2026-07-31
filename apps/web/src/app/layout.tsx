@@ -22,6 +22,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main>
             {children}
           </main>
+          <footer className="border-t border-white/10 bg-slate-950/80 py-4 text-center text-sm text-white/50">
+            이 서비스는 참고용입니다. 실제 복용 판단과 치료 계획은 의사 또는 약사 등 전문가와 상담해주세요.
+          </footer>
         </Providers>
       </body>
     </html>

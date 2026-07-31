@@ -41,7 +41,7 @@ export default function AnalysisPage() {
   }
 
   return (
-    <div className="pt-[72px] max-w-[1400px] mx-auto px-6 py-16 space-y-10" data-testid="analysis-page">
+    <div className="pt-[100px] max-w-[1400px] mx-auto px-6 py-16 space-y-10" data-testid="analysis-page">
       <h1 className="text-4xl font-black tracking-tight">ANALYSIS</h1>
       {isLoading && <p className="text-white/30 text-sm">Analyzing...</p>}
       {error && <p className="text-red-400 text-sm">오류 발생</p>}
