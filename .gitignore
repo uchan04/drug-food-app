@@ -39,3 +39,6 @@ postgres_data/
 npm-debug.log*
 pnpm-debug.log*
 .ast-graph/
+
+# AI-DLC generated docs that are local workflow artifacts
+aidlc-docs/
