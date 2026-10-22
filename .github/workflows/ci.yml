@@ -113,3 +113,30 @@ jobs:
 
       - name: Build all packages
         run: pnpm build
+
+  pipeline:
+    name: Pipeline (extraction eval)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 의존성 설치가 없다. pipeline 은 표준 라이브러리만 쓴다.
+      - name: Self-checks
+        working-directory: pipeline
+        run: |
+          python3 parse.py
+          python3 extract.py
+          python3 test_fetch.py
+
+      # eval/labels.tsv 가 문장을 그대로 담고 있어서 원본 데이터도 API 키도 필요 없다.
+      # 추출 규칙을 고쳤을 때 정밀도/재현율이 떨어지면 여기서 드러난다.
+      - name: Extraction eval
+        working-directory: pipeline
+        run: python3 score.py --check
