@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 
+import { MedicineBoxModule } from '../medicine-box/medicine-box.module';
+
 import { InteractionController } from './interaction.controller';
 import { InteractionService } from './interaction.service';
-import { MedicineBoxModule } from '../medicine-box/medicine-box.module';
 
 @Module({
   imports: [MedicineBoxModule],

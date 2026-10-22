@@ -6,10 +6,11 @@ import {
 import * as bcrypt from 'bcrypt';
 import { sign, verify, type SignOptions } from 'jsonwebtoken';
 
-import { PrismaService } from '../prisma/prisma.service';
-import type { RegisterDto } from './dto/register.dto';
-import type { LoginDto } from './dto/login.dto';
 import type { JwtPayload } from '../common/decorators/current-user.decorator';
+import { PrismaService } from '../prisma/prisma.service';
+
+import type { LoginDto } from './dto/login.dto';
+import type { RegisterDto } from './dto/register.dto';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '15m';

@@ -2,8 +2,8 @@
  * Property-Based Tests for Interaction Analysis Engine
  * Verifies invariants of the drug-food interaction system (PBT-03)
  */
-import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
+import { describe, it, expect } from 'vitest';
 
 import { riskLevelArb, timeGapArb } from '../generators/drug.generator';
 

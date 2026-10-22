@@ -10,11 +10,12 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 
-import { UserService } from './user.service';
-import { UpdateProfileDto } from './dto/update-profile.dto';
-import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import type { JwtPayload } from '../common/decorators/current-user.decorator';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+
+import { UpdateProfileDto } from './dto/update-profile.dto';
+import { UserService } from './user.service';
 
 @ApiTags('Users')
 @Controller('users')

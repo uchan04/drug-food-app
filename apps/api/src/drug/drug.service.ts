@@ -148,7 +148,7 @@ export class DrugService {
     return combined;
   }
 
-  async getById(id: string, lang: 'ko' | 'en') {
+  async getById(id: string, _lang: 'ko' | 'en') {
     const drug = await this.prisma.drug.findUnique({
       where: { id },
       include: { ingredients: true },

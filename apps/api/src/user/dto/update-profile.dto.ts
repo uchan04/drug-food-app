@@ -1,6 +1,6 @@
-import { IsOptional, IsString, IsEnum, MinLength, MaxLength } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Language } from '@prisma/client';
+import { IsOptional, IsString, IsEnum, MinLength, MaxLength } from 'class-validator';
 
 export class UpdateProfileDto {
   @ApiPropertyOptional({ example: '홍길동' })
