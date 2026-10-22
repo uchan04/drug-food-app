@@ -50,13 +50,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm --filter api prisma generate
+        run: pnpm --filter api exec prisma generate
 
       - name: Run migrations
-        run: pnpm --filter api prisma migrate deploy
+        run: pnpm --filter api exec prisma migrate deploy
 
       - name: Seed test data
-        run: pnpm --filter api prisma db seed
+        run: pnpm --filter api exec prisma db seed
 
       - name: Lint
         run: pnpm lint
@@ -109,7 +109,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm --filter api prisma generate
+        run: pnpm --filter api exec prisma generate
 
       - name: Build all packages
         run: pnpm build
