@@ -170,6 +170,14 @@ def errors(rows, kind):
 MIN_PRECISION = 0.80
 MIN_RECALL = 0.98
 
+# 위험도 하한. 측정값은 정확도 0.949 / 격상 정밀도 0.875 / 격상 재현율 0.778 이다.
+# 정확도만으로는 부족하다 — 라벨 235건 중 199건이 caution 이라 전부 caution 이라고
+# 답해도 0.847 이 나온다. 격상 쪽을 따로 지킨다. 정확도를 함께 두는 이유는
+# 금기와 경고를 혼동하는 경우를 격상 지표가 둘 다 "격상"으로 세기 때문이다.
+MIN_RISK_ACC = 0.92
+MIN_ESC_PRECISION = 0.82
+MIN_ESC_RECALL = 0.72
+
 
 def check(rows):
     m = prf(rows, RULES)
@@ -181,8 +189,19 @@ def check(rows):
     if m["recall"] < MIN_RECALL:
         bad.append(f"재현율 {m['recall']:.3f} < {MIN_RECALL}")
 
+    r = risk_metrics(risk_rows(rows))
+    print(f"risk: acc={r['acc']:.3f} 격상 precision={r['esc_p']:.3f} recall={r['esc_r']:.3f} "
+          f"과대={r['over']} 과소={r['under']} "
+          f"(하한 {MIN_RISK_ACC}/{MIN_ESC_PRECISION}/{MIN_ESC_RECALL})")
+    if r["acc"] < MIN_RISK_ACC:
+        bad.append(f"위험도 정확도 {r['acc']:.3f} < {MIN_RISK_ACC}")
+    if r["esc_p"] < MIN_ESC_PRECISION:
+        bad.append(f"격상 정밀도 {r['esc_p']:.3f} < {MIN_ESC_PRECISION}")
+    if r["esc_r"] < MIN_ESC_RECALL:
+        bad.append(f"격상 재현율 {r['esc_r']:.3f} < {MIN_ESC_RECALL}")
+
     if bad:
-        sys.exit("추출 규칙 퇴행: " + ", ".join(bad))
+        sys.exit("규칙 퇴행: " + ", ".join(bad))
     print("ok score")
 
 
