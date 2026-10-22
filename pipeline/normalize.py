@@ -172,11 +172,16 @@ def normalize(docs):
             "sourceUrl": ENDPOINT,
             "itemSeqs": seqs,
             "evidenceCount": len(e["pairs"]),
-            # 후보 전체를 남긴다. 대표 문장이 그 쌍을 제대로 설명하지 못할 때
-            # 리뷰에서 다른 근거로 교체할 수 있어야 한다 (review.py 의 pick).
+            # 후보 전체를 (문장, 키워드)로 남긴다. 대표 문장이 그 쌍을 제대로
+            # 설명하지 못할 때 리뷰에서 다른 근거로 교체할 수 있어야 한다
+            # (review.py 의 pick). 키워드를 함께 남기는 이유는, 교체한 문장에서
+            # riskLevel 을 다시 계산해야 하기 때문이다. 위의 riskLevel 은
+            # ranked[0] 기준이라 pick 으로 다른 문장을 고르면 어긋난다
+            # (실제로 77행 중 9행이 어긋나 있었다. caution 문장에 warning 배지).
             # 문장 단위로 중복을 제거한다. "우유"와 "유제품"처럼 서로 다른
             # 표제어가 같은 음식·같은 문장을 가리키면 근거가 중복으로 들어온다.
-            "evidence": list(dict.fromkeys(snt for snt, _ in ranked)),
+            # 중복일 때는 순위가 높은 쪽의 키워드를 남긴다.
+            "evidence": list({snt: [snt, kw] for snt, kw in reversed(ranked)}.values()),
         })
     return out
 

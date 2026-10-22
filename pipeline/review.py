@@ -19,11 +19,18 @@ pick 은 ok 행에 필수다. 리뷰어가 "본 문장"을 고정하는 역할�
 으로만 키를 잡으면 근거 선택 규칙을 고쳤을 때 승인이 조용히 다른 문장에
 따라붙는다. 실제로 메트포르민-음식이 그렇게 "수술" 문장으로 바뀌었다.
 
+pick 이 여러 문장에 걸리면, 그 문장들이 공백·구두점만 다른 같은 문장일 때만
+통과시킨다. 제네릭은 같은 주의사항을 제조사별로 띄어쓰기와 괄호 표기만 바꿔
+쓴다("투여시"/"투여 시", "(예, 우유"/"(예 : 우유"). 표본을 성분당 3품목에서
+20품목으로 늘리자 승인 21건의 pick 이 이런 변형 때문에 중복으로 걸렸다.
+내용이 다른 문장에 걸리면 그대로 멈춘다 — 그게 막으려던 사고다.
+
     python3 review.py          # curated/interactions.json 생성
     python3 review.py --demo   # 자체 점검
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -33,6 +40,14 @@ HERE = Path(__file__).parent
 PROPOSALS = HERE / "curated" / "proposals.json"
 DECISIONS = HERE / "eval" / "review.tsv"
 OUT = HERE / "curated" / "interactions.json"
+
+
+# 공백과 구두점을 지운 비교용 형태. 제조사별 표기 차이만 지우고 글자는 남긴다.
+_COSMETIC = re.compile(r"[\s·ㆍ:,()\[\]{}'\"‘’“”]+")
+
+
+def same_text(a, b):
+    return _COSMETIC.sub("", a) == _COSMETIC.sub("", b)
 
 
 def load_decisions(path=DECISIONS):
@@ -67,14 +82,26 @@ def apply(proposals, decisions):
                 f"pick 이 비어 있다: {p['ingredient']}/{p['food']}. "
                 "승인한 근거 문장의 접두어를 적어야 한다."
             )
-        hit = [s for s in p["evidence"] if s.startswith(d["pick"])]
-        if len(hit) != 1:
+        hit = [e for e in p["evidence"] if e[0].startswith(d["pick"])]
+        if not hit:
             # 조용히 기본 문장을 쓰면 리뷰어가 승인한 근거가 사라진다.
             raise SystemExit(
-                f"pick 이 {len(hit)}건 일치: {p['ingredient']}/{p['food']} <- {d['pick']!r}"
+                f"pick 이 0건 일치: {p['ingredient']}/{p['food']} <- {d['pick']!r}"
             )
+        if not all(same_text(hit[0][0], h[0]) for h in hit[1:]):
+            raise SystemExit(
+                f"pick 이 내용이 다른 {len(hit)}개 문장에 걸렸다: "
+                f"{p['ingredient']}/{p['food']} <- {d['pick']!r}\n  "
+                + "\n  ".join(h[0][:120] for h in hit)
+                + "\n접두어를 더 길게 적어 하나만 고르세요."
+            )
+        sentence, keyword = hit[0]
         row = dict(p)
-        row["reasonKo"] = hit[0]
+        row["reasonKo"] = sentence
+        row["keyword"] = keyword
+        # 보여줄 문장에서 위험도를 다시 계산한다. 제안의 riskLevel 은 순위 1위
+        # 문장 기준이라, pick 으로 다른 문장을 고르면 배지와 설명이 어긋난다.
+        row["riskLevel"] = normalize.risk_level(sentence, keyword)
         row["note"] = d["note"]
         row.pop("evidence", None)
         keep.append(row)
@@ -84,11 +111,15 @@ def apply(proposals, decisions):
 def demo():
     props = [
         {"ingredient": "심바스타틴", "food": "자몽주스", "reasonKo": "자몽주스를 섭취하지 않도록 한다",
-         "evidence": ["자몽주스를 섭취하지 않도록 한다"]},
+         "riskLevel": "warning",
+         "evidence": [["자몽주스를 섭취하지 않도록 한다", "자몽주스"]]},
         {"ingredient": "글리메피리드", "food": "설탕", "reasonKo": "저혈당에 설탕을 섭취한다",
-         "evidence": ["저혈당에 설탕을 섭취한다"]},
+         "riskLevel": "caution",
+         "evidence": [["저혈당에 설탕을 섭취한다", "설탕"]]},
         {"ingredient": "알렌드로네이트", "food": "음식(일반)", "reasonKo": "식도질환 증상이 나타나면",
-         "evidence": ["식도질환 증상이 나타나면", "30분 이내 음식물을 섭취하면 흡수가 저하된다"]},
+         "riskLevel": "caution",
+         "evidence": [["식도질환 증상이 나타나면", "음식물"],
+                      ["30분 이내 음식물을 섭취하면 흡수가 저하된다", "음식물"]]},
     ]
     dec = {
         ("심바스타틴", "자몽주스"): {"decision": "ok", "pick": "자몽주스를", "note": ""},
@@ -100,6 +131,9 @@ def demo():
     assert [d["ingredient"] for d in drop] == ["글리메피리드"]
     # pick 이 적용되어야 한다
     assert keep[1]["reasonKo"] == "30분 이내 음식물을 섭취하면 흡수가 저하된다"
+    # 위험도는 교체한 문장에서 다시 계산한다 (제안의 riskLevel 을 그대로 쓰면 안 된다)
+    assert keep[0]["riskLevel"] == normalize.risk_level(
+        "자몽주스를 섭취하지 않도록 한다", "자몽주스") == "warning"
     # evidence 는 적재물에 남기지 않는다
     assert "evidence" not in keep[0]
 
@@ -124,6 +158,25 @@ def demo():
         raise AssertionError("pick 불일치가 통과했다")
     except SystemExit as e:
         assert "pick 이 0건 일치" in str(e), e
+
+    # 공백·구두점만 다른 제조사 변형은 통과한다 (첫 번째를 쓴다)
+    var = [{"ingredient": "로수바스타틴", "food": "알코올", "reasonKo": "", "riskLevel": "caution",
+            "evidence": [["이 약은 알코올 과다 섭취 시 주의해야 한다.", "알코올"],
+                         ["이 약은 알코올 과다 섭취 시 주의 해야 한다.", "알코올"]]}]
+    keep, _ = apply(var, {("로수바스타틴", "알코올"):
+                          {"decision": "ok", "pick": "이 약은 알코올", "note": ""}})
+    assert keep[0]["reasonKo"] == var[0]["evidence"][0][0], keep
+
+    # 내용이 다른 문장에 걸리면 멈춘다
+    two = [{"ingredient": "심바스타틴", "food": "자몽주스", "reasonKo": "", "riskLevel": "caution",
+            "evidence": [["이 약과 자몽주스를 병용하면 혈장 농도가 증가한다.", "자몽주스"],
+                         ["이 약과 자몽주스를 병용하면 혈중 농도가 증가한다.", "자몽주스"]]}]
+    try:
+        apply(two, {("심바스타틴", "자몽주스"):
+                    {"decision": "ok", "pick": "이 약과 자몽주스를", "note": ""}})
+        raise AssertionError("내용이 다른 중복이 통과했다")
+    except SystemExit as e:
+        assert "내용이 다른 2개 문장" in str(e), e
     print("ok review")
 
 
