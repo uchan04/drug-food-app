@@ -63,6 +63,11 @@ jobs:
       - name: Load extracted interactions
         run: pnpm --filter api load:interactions
 
+      # 검색 품질을 커밋된 평가셋(110개 쿼리)으로 잰다. DB 가 필요해서 이 job
+      # 안에 둔다. 랭킹이 퇴행하면 하한에 걸려 죽는다.
+      - name: Search eval
+        run: pnpm --filter api eval:search -- --check
+
       - name: Lint
         run: pnpm lint
 
