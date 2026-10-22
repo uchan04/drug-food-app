@@ -859,7 +859,9 @@ async function main() {
 
   // Seed Interactions
   for (const interaction of INTERACTIONS) {
-    const { ingredientId, foodId, ...data } = interaction;
+    const { ingredientId, foodId, ...rest } = interaction;
+    // 아래 72행은 손으로 적은 것이고 출처가 없다. 데이터에 그대로 남긴다.
+    const data = { ...rest, source: 'seed:manual' };
     await prisma.interaction.upsert({
       where: {
         ingredientId_foodId: { ingredientId, foodId },

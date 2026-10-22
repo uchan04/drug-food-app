@@ -125,6 +125,12 @@ model Interaction {
   timeGapHours  Int?      @map("time_gap_hours")
   createdAt     DateTime  @default(now()) @map("created_at")
 
+  // 출처. 의료 정보라 근거 없는 행이 섞이면 안 된다.
+  // 기본값이 seed:manual 인 이유는, 손으로 적은 기존 72행을 숨기지 않고 라벨링하기 위함.
+  source    String    @default("seed:manual")
+  sourceUrl String?   @map("source_url")
+  fetchedAt DateTime? @map("fetched_at")
+
   // Relations
   ingredient DrugIngredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
   food       Food           @relation(fields: [foodId], references: [id], onDelete: Cascade)
