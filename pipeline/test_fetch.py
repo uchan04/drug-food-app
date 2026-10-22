@@ -38,7 +38,10 @@ class _Handler(BaseHTTPRequestHandler):
         page = int(q["pageNo"][0])
         items = [{"i": 1}, {"i": 2}] if page == 1 else [{"i": 3}]
         body = json.dumps(
-            {"response": {"body": {"totalCount": 3, "items": {"item": items}}}}
+            {
+                "header": {"resultCode": "00", "resultMsg": "NORMAL SERVICE."},
+                "body": {"pageNo": page, "totalCount": 3, "numOfRows": 2, "items": items},
+            }
         ).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
