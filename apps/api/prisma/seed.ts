@@ -180,14 +180,12 @@ const FOODS = [
   { id: 'f022', nameKo: '생강', nameEn: 'Ginger', category: '채소', nutrients: ['진저롤', '비타민C'] },
   { id: 'f023', nameKo: '고구마', nameEn: 'Sweet Potato', category: '채소', nutrients: ['칼륨', '식이섬유', '비타민A'] },
   // 음료
-  { id: 'f010', nameKo: '알코올 (맥주)', nameEn: 'Alcohol (Beer)', category: '음료', nutrients: ['에탄올', '푸린'] },
-  { id: 'f011', nameKo: '알코올 (와인)', nameEn: 'Alcohol (Wine)', category: '음료', nutrients: ['에탄올', '타닌'] },
+  // 알코올 (맥주) 였다. 남은 행이 '맥주에 포함된 푸린이 요산 수치를 상승'이라
+  // 에탄올이 아니라 맥주 고유의 기전이다. 이름을 그에 맞게 바꿨다.
+  { id: 'f010', nameKo: '맥주', nameEn: 'Beer', category: '음료', nutrients: ['에탄올', '푸린'] },
   { id: 'f012', nameKo: '커피', nameEn: 'Coffee', category: '음료', nutrients: ['카페인'] },
-  { id: 'f013', nameKo: '자몽주스', nameEn: 'Grapefruit Juice', category: '음료', nutrients: ['푸라노쿠마린', '비타민C'] },
   { id: 'f024', nameKo: '녹차', nameEn: 'Green Tea', category: '음료', nutrients: ['카페인', '비타민K', '카테킨'] },
-  { id: 'f025', nameKo: '소주', nameEn: 'Soju', category: '음료', nutrients: ['에탄올'] },
   { id: 'f026', nameKo: '에너지드링크', nameEn: 'Energy Drink', category: '음료', nutrients: ['카페인', '타우린', '당류'] },
-  { id: 'f027', nameKo: '우유 (저지방)', nameEn: 'Low-fat Milk', category: '음료', nutrients: ['칼슘', '단백질'] },
   // 기타/간식
   { id: 'f014', nameKo: '콩가루', nameEn: 'Soybean Powder', category: '기타', nutrients: ['비타민K', '단백질'] },
   { id: 'f015', nameKo: '고푸린 음식', nameEn: 'High-Purine Foods', category: '기타', nutrients: ['푸린'] },
@@ -198,13 +196,40 @@ const FOODS = [
   { id: 'f031', nameKo: '청국장', nameEn: 'Cheonggukjang', category: '발효식품', nutrients: ['비타민K2', '티라민', '나토키나제'] },
   { id: 'f032', nameKo: '두부', nameEn: 'Tofu', category: '기타', nutrients: ['칼슘', '이소플라본', '단백질'] },
   { id: 'f033', nameKo: '견과류 (호두)', nameEn: 'Walnuts', category: '기타', nutrients: ['오메가3', '비타민E'] },
-  { id: 'f034', nameKo: '철분보충제', nameEn: 'Iron Supplement', category: '기타', nutrients: ['철분'] },
   { id: 'f035', nameKo: '고나트륨 음식', nameEn: 'High-Sodium Foods', category: '기타', nutrients: ['나트륨'] },
   { id: 'f036', nameKo: '고섬유 식품', nameEn: 'High-Fiber Foods', category: '기타', nutrients: ['식이섬유'] },
+  // 아래는 추출 파이프라인이 쓰는 음식이다. seed 가 Food 어휘의 주인이어야
+  // 손으로 적은 행이 이 음식들을 참조할 수 있다 (알로푸리놀 x 알코올 등).
+  // 여기에 없으면 load-interactions 가 nameKo 로 찾다 실패해 새로 만드는데,
+  // seed 가 먼저 돌므로 seed 행은 그 id 를 가리킬 수 없다.
+  { id: 'f037', nameKo: '알코올', nameEn: 'Alcohol', category: '음료', nutrients: ['에탄올'] },
+  { id: 'f038', nameKo: '음식(일반)', nameEn: 'Food (general)', category: '기타', nutrients: [] },
+  { id: 'f039', nameKo: '칼슘', nameEn: 'Calcium', category: '보충제', nutrients: ['칼슘'] },
+  { id: 'f040', nameKo: '마그네슘', nameEn: 'Magnesium', category: '보충제', nutrients: ['마그네슘'] },
+  { id: 'f041', nameKo: '알루미늄', nameEn: 'Aluminium', category: '보충제', nutrients: ['알루미늄'] },
+  { id: 'f042', nameKo: '아연', nameEn: 'Zinc', category: '보충제', nutrients: ['아연'] },
+  { id: 'f043', nameKo: '철분', nameEn: 'Iron', category: '보충제', nutrients: ['철분'] },
+  { id: 'f044', nameKo: '지방', nameEn: 'Dietary Fat', category: '기타', nutrients: ['지방'] },
+  { id: 'f045', nameKo: '야채', nameEn: 'Vegetables', category: '채소', nutrients: ['비타민K', '식이섬유'] },
+  { id: 'f046', nameKo: '세인트존스워트', nameEn: "St. John's Wort", category: '건강기능식품', nutrients: ['하이퍼리신'] },
+];
+
+// 중복이라 은퇴시킨 Food. 알코올을 종류별로(소주/맥주/와인) 쪼개고 자몽과
+// 자몽주스를 분리한 것이 같은 상호작용을 여러 행으로 적재하는 원인이었다
+// (아세트아미노펜을 조회하면 알코올 항목이 위험도가 서로 다른 채로 4개 나왔다).
+//
+// seed 는 upsert 만 하므로 배열에서 지워도 기존 DB 의 행은 남는다. 명시적으로
+// 삭제한다. Interaction.foodId 가 onDelete: Cascade 라 딸린 행도 함께 지워진다.
+const RETIRED_FOODS = [
+  { id: 'f011', nameKo: '알코올 (와인)' },
+  { id: 'f013', nameKo: '자몽주스' },
+  { id: 'f025', nameKo: '소주' },
+  { id: 'f027', nameKo: '우유 (저지방)' },
+  { id: 'f034', nameKo: '철분보충제' },
 ];
 
 // ============================================
-// SEED DATA: Interactions (60+ mappings)
+// SEED DATA: Interactions (손으로 적은 행. 출처가 없다)
 // ============================================
 
 const INTERACTIONS = [
@@ -258,14 +283,6 @@ const INTERACTIONS = [
     sideEffectsEn: 'Severe hypotension, dizziness, tachycardia, headache',
     timeGapHours: null,
   },
-  {
-    ingredientId: 'i013', foodId: 'f013', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '자몽주스가 CYP3A4 억제를 통해 암로디핀 효과를 과도하게 증폭시킵니다.',
-    reasonEn: 'Grapefruit juice amplifies amlodipine effects through CYP3A4 inhibition.',
-    sideEffectsKo: '과도한 혈압 강하, 실신',
-    sideEffectsEn: 'Excessive blood pressure drop, syncope',
-    timeGapHours: null,
-  },
   // === 고지혈증약 + 자몽/알코올 ===
   {
     ingredientId: 'i003', foodId: 'f002', riskLevel: RiskLevel.contraindicated,
@@ -273,14 +290,6 @@ const INTERACTIONS = [
     reasonEn: 'Furanocoumarins in grapefruit inhibit CYP3A4 enzyme, causing dangerous drug level elevation.',
     sideEffectsKo: '횡문근융해증, 근육통, 간 손상, 신장 손상',
     sideEffectsEn: 'Rhabdomyolysis, muscle pain, liver damage, kidney damage',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i003', foodId: 'f013', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '자몽주스도 자몽과 동일하게 CYP3A4 효소를 억제합니다.',
-    reasonEn: 'Grapefruit juice inhibits CYP3A4 enzyme same as whole grapefruit.',
-    sideEffectsKo: '횡문근융해증, 근육통, 간 손상',
-    sideEffectsEn: 'Rhabdomyolysis, muscle pain, liver damage',
     timeGapHours: null,
   },
   {
@@ -297,22 +306,6 @@ const INTERACTIONS = [
     reasonEn: 'Simvastatin heavily relies on CYP3A4; grapefruit co-consumption is very dangerous.',
     sideEffectsKo: '횡문근융해증, 급성 신부전',
     sideEffectsEn: 'Rhabdomyolysis, acute renal failure',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i014', foodId: 'f013', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '자몽주스가 심바스타틴 혈중 농도를 최대 15배까지 증가시킬 수 있습니다.',
-    reasonEn: 'Grapefruit juice can increase simvastatin blood levels up to 15-fold.',
-    sideEffectsKo: '횡문근융해증, 간독성, 신부전',
-    sideEffectsEn: 'Rhabdomyolysis, hepatotoxicity, renal failure',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i003', foodId: 'f010', riskLevel: RiskLevel.warning,
-    reasonKo: '알코올이 스타틴의 간 독성을 증가시킬 수 있습니다.',
-    reasonEn: 'Alcohol may increase the hepatotoxicity of statins.',
-    sideEffectsKo: '간 손상 위험 증가, 근육통 악화',
-    sideEffectsEn: 'Increased liver damage risk, worsened muscle pain',
     timeGapHours: null,
   },
   // === 항생제 (테트라사이클린) + 유제품/제산제 ===
@@ -349,7 +342,7 @@ const INTERACTIONS = [
     timeGapHours: 2,
   },
   {
-    ingredientId: 'i005', foodId: 'f034', riskLevel: RiskLevel.warning,
+    ingredientId: 'i005', foodId: 'f043', riskLevel: RiskLevel.warning,
     reasonKo: '철분이 독시사이클린과 킬레이트를 형성하여 양쪽 모두 흡수를 방해합니다.',
     reasonEn: 'Iron forms chelates with doxycycline, impairing absorption of both.',
     sideEffectsKo: '항생제 및 철분 흡수 감소',
@@ -399,30 +392,6 @@ const INTERACTIONS = [
   },
   // === 진통소염제 + 알코올/커피 ===
   {
-    ingredientId: 'i007', foodId: 'f010', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '이부프로펜과 알코올이 동시에 위 점막을 자극하여 출혈 위험이 크게 증가합니다.',
-    reasonEn: 'Ibuprofen and alcohol both irritate stomach lining, greatly increasing bleeding risk.',
-    sideEffectsKo: '위장 출혈, 위궤양, 소화관 천공',
-    sideEffectsEn: 'GI bleeding, stomach ulcers, digestive tract perforation',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i007', foodId: 'f011', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '와인의 알코올이 이부프로펜의 위장 부작용을 악화시킵니다.',
-    reasonEn: 'Alcohol in wine exacerbates GI side effects of ibuprofen.',
-    sideEffectsKo: '위장 출혈, 위궤양',
-    sideEffectsEn: 'GI bleeding, stomach ulcers',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i007', foodId: 'f025', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '소주와 이부프로펜 병용은 위장 출혈 위험을 크게 높입니다.',
-    reasonEn: 'Combining soju with ibuprofen greatly increases GI bleeding risk.',
-    sideEffectsKo: '위장 출혈, 위궤양, 신장 손상',
-    sideEffectsEn: 'GI bleeding, ulcers, kidney damage',
-    timeGapHours: null,
-  },
-  {
     ingredientId: 'i007', foodId: 'f012', riskLevel: RiskLevel.caution,
     reasonKo: '커피의 카페인이 위산 분비를 촉진하여 이부프로펜의 위장 자극을 증가시킬 수 있습니다.',
     reasonEn: 'Caffeine in coffee promotes gastric acid secretion, potentially increasing ibuprofen GI irritation.',
@@ -430,39 +399,7 @@ const INTERACTIONS = [
     sideEffectsEn: 'Heartburn, increased GI discomfort',
     timeGapHours: 1,
   },
-  {
-    ingredientId: 'i017', foodId: 'f010', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '나프록센과 알코올 병용은 위장 출혈 위험을 높입니다.',
-    reasonEn: 'Combining naproxen with alcohol increases GI bleeding risk.',
-    sideEffectsKo: '위장 출혈, 위궤양',
-    sideEffectsEn: 'GI bleeding, stomach ulcers',
-    timeGapHours: null,
-  },
   // === 아세트아미노펜 + 알코올 ===
-  {
-    ingredientId: 'i009', foodId: 'f010', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '아세트아미노펜과 알코올을 함께 섭취하면 간 독성이 크게 증가합니다.',
-    reasonEn: 'Combining acetaminophen with alcohol significantly increases liver toxicity.',
-    sideEffectsKo: '간 손상, 급성 간부전',
-    sideEffectsEn: 'Liver damage, acute liver failure',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i009', foodId: 'f011', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '와인의 알코올이 아세트아미노펜의 간 독성 대사물 생성을 촉진합니다.',
-    reasonEn: 'Alcohol in wine promotes formation of hepatotoxic acetaminophen metabolites.',
-    sideEffectsKo: '간 손상, 간부전',
-    sideEffectsEn: 'Liver damage, liver failure',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i009', foodId: 'f025', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '소주와 아세트아미노펜 병용은 간 손상 위험이 매우 높습니다.',
-    reasonEn: 'Combining soju with acetaminophen poses very high liver damage risk.',
-    sideEffectsKo: '급성 간부전, 간 괴사',
-    sideEffectsEn: 'Acute liver failure, hepatic necrosis',
-    timeGapHours: null,
-  },
   {
     ingredientId: 'i009', foodId: 'f012', riskLevel: RiskLevel.caution,
     reasonKo: '카페인이 아세트아미노펜 흡수를 촉진할 수 있으나, 과량 시 간 부담 증가.',
@@ -489,7 +426,7 @@ const INTERACTIONS = [
     timeGapHours: null,
   },
   {
-    ingredientId: 'i010', foodId: 'f025', riskLevel: RiskLevel.warning,
+    ingredientId: 'i010', foodId: 'f037', riskLevel: RiskLevel.warning,
     reasonKo: '소주 등 주류가 요산 배출을 억제하여 통풍약 효과를 감소시킵니다.',
     reasonEn: 'Alcohol inhibits uric acid excretion, reducing gout medication effectiveness.',
     sideEffectsKo: '통풍 발작 위험 증가',
@@ -595,22 +532,6 @@ const INTERACTIONS = [
   },
   // === 당뇨약 + 알코올 ===
   {
-    ingredientId: 'i018', foodId: 'f010', riskLevel: RiskLevel.warning,
-    reasonKo: '알코올이 메트포르민과 병용 시 젖산 산증 위험을 높입니다.',
-    reasonEn: 'Alcohol combined with metformin increases lactic acidosis risk.',
-    sideEffectsKo: '젖산 산증, 저혈당, 구역질',
-    sideEffectsEn: 'Lactic acidosis, hypoglycemia, nausea',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i018', foodId: 'f025', riskLevel: RiskLevel.warning,
-    reasonKo: '소주와 메트포르민 병용은 젖산 산증 위험을 크게 높입니다.',
-    reasonEn: 'Soju combined with metformin significantly increases lactic acidosis risk.',
-    sideEffectsKo: '젖산 산증, 저혈당',
-    sideEffectsEn: 'Lactic acidosis, hypoglycemia',
-    timeGapHours: null,
-  },
-  {
     ingredientId: 'i018', foodId: 'f036', riskLevel: RiskLevel.caution,
     reasonKo: '고섬유 식품이 메트포르민 흡수를 감소시킬 수 있습니다.',
     reasonEn: 'High-fiber foods may reduce metformin absorption.',
@@ -618,45 +539,13 @@ const INTERACTIONS = [
     sideEffectsEn: 'Possible reduced efficacy',
     timeGapHours: 1,
   },
-  {
-    ingredientId: 'i019', foodId: 'f010', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '알코올이 글리메피리드와 병용 시 심각한 저혈당을 유발할 수 있습니다.',
-    reasonEn: 'Alcohol combined with glimepiride can cause severe hypoglycemia.',
-    sideEffectsKo: '심각한 저혈당, 의식 소실',
-    sideEffectsEn: 'Severe hypoglycemia, loss of consciousness',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i019', foodId: 'f025', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '소주가 글리메피리드의 저혈당 효과를 예측 불가하게 증강시킵니다.',
-    reasonEn: 'Soju unpredictably enhances the hypoglycemic effect of glimepiride.',
-    sideEffectsKo: '심각한 저혈당, 혼수',
-    sideEffectsEn: 'Severe hypoglycemia, coma',
-    timeGapHours: null,
-  },
   // === 항우울제 (SSRI) + 알코올/카페인 ===
-  {
-    ingredientId: 'i020', foodId: 'f010', riskLevel: RiskLevel.warning,
-    reasonKo: '알코올이 서트랄린의 중추신경 억제 효과를 증강시킵니다.',
-    reasonEn: 'Alcohol enhances CNS depressant effects of sertraline.',
-    sideEffectsKo: '과도한 졸음, 판단력 저하, 우울 악화',
-    sideEffectsEn: 'Excessive drowsiness, impaired judgment, worsened depression',
-    timeGapHours: null,
-  },
   {
     ingredientId: 'i020', foodId: 'f012', riskLevel: RiskLevel.caution,
     reasonKo: '카페인과 SSRI 병용 시 불안, 초조감이 증가할 수 있습니다.',
     reasonEn: 'Caffeine combined with SSRI may increase anxiety and restlessness.',
     sideEffectsKo: '불안, 초조, 불면',
     sideEffectsEn: 'Anxiety, restlessness, insomnia',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i021', foodId: 'f010', riskLevel: RiskLevel.warning,
-    reasonKo: '알코올이 플루옥세틴의 진정 효과를 증가시킵니다.',
-    reasonEn: 'Alcohol increases sedative effects of fluoxetine.',
-    sideEffectsKo: '과도한 졸음, 어지러움, 판단력 저하',
-    sideEffectsEn: 'Excessive drowsiness, dizziness, impaired judgment',
     timeGapHours: null,
   },
   // === MAO 억제제 + 티라민 식품 ===
@@ -726,14 +615,6 @@ const INTERACTIONS = [
     timeGapHours: 4,
   },
   {
-    ingredientId: 'i023', foodId: 'f034', riskLevel: RiskLevel.warning,
-    reasonKo: '철분 보충제가 레보티록신과 결합하여 흡수를 크게 방해합니다.',
-    reasonEn: 'Iron supplements bind with levothyroxine, significantly reducing absorption.',
-    sideEffectsKo: '갑상선 기능 저하 증상 악화',
-    sideEffectsEn: 'Worsened hypothyroid symptoms',
-    timeGapHours: 4,
-  },
-  {
     ingredientId: 'i023', foodId: 'f036', riskLevel: RiskLevel.caution,
     reasonKo: '고섬유 식품이 레보티록신 흡수를 방해할 수 있습니다.',
     reasonEn: 'High-fiber foods may impair levothyroxine absorption.',
@@ -768,14 +649,6 @@ const INTERACTIONS = [
   },
   // === 항히스타민제 + 알코올/자몽 ===
   {
-    ingredientId: 'i026', foodId: 'f010', riskLevel: RiskLevel.warning,
-    reasonKo: '알코올이 세티리진의 졸음 유발 효과를 증가시킵니다.',
-    reasonEn: 'Alcohol increases drowsiness caused by cetirizine.',
-    sideEffectsKo: '과도한 졸음, 집중력 저하',
-    sideEffectsEn: 'Excessive drowsiness, impaired concentration',
-    timeGapHours: null,
-  },
-  {
     ingredientId: 'i026', foodId: 'f002', riskLevel: RiskLevel.caution,
     reasonKo: '자몽이 세티리진의 대사를 방해하여 체내 약물 농도를 높일 수 있습니다.',
     reasonEn: 'Grapefruit may impair cetirizine metabolism, increasing drug levels.',
@@ -793,7 +666,7 @@ const INTERACTIONS = [
     timeGapHours: null,
   },
   {
-    ingredientId: 'i024', foodId: 'f010', riskLevel: RiskLevel.caution,
+    ingredientId: 'i024', foodId: 'f037', riskLevel: RiskLevel.caution,
     reasonKo: '알코올이 위산 분비를 증가시켜 PPI의 치료 효과를 방해합니다.',
     reasonEn: 'Alcohol increases acid secretion, counteracting PPI therapeutic effect.',
     sideEffectsKo: '위산 역류 악화',
@@ -808,6 +681,51 @@ const INTERACTIONS = [
 
 async function main() {
   console.info('🌱 Seeding database...');
+
+  // Food.nameKo 가 유니크(마이그레이션 0005)다. 배열에서 이름이 겹치면
+  // upsert 가 제약 위반으로 터지는데, 어느 행 때문인지 알기 어렵다.
+  const dupNames = FOODS.map((f) => f.nameKo).filter((n, i, a) => a.indexOf(n) !== i);
+  if (dupNames.length > 0) {
+    throw new Error(`FOODS 에 이름이 겹치는 항목: ${[...new Set(dupNames)].join(', ')}`);
+  }
+
+  // 은퇴시킨 이름을 다시 넣으면 중복 모델로 되돌아간다.
+  const revived = FOODS.filter((f) => RETIRED_FOODS.some((r) => r.nameKo === f.nameKo));
+  if (revived.length > 0) {
+    throw new Error(
+      `은퇴한 Food 이름을 다시 넣었다: ${revived.map((f) => f.nameKo).join(', ')}. ` +
+        '알코올/자몽으로 묶기로 한 것들이다 (pipeline/normalize.FOOD_ALIAS 참조).',
+    );
+  }
+
+  // 재지정한 foodId 가 FOODS 에 없으면 upsert 가 외래키에서 터진다. 어느 행이
+  // 문제인지 알 수 없는 에러가 나오므로 먼저 확인한다.
+  const foodIds = new Set(FOODS.map((f) => f.id));
+  const dangling = INTERACTIONS.filter((i) => !foodIds.has(i.foodId));
+  if (dangling.length > 0) {
+    throw new Error(
+      `FOODS 에 없는 foodId 를 가리키는 상호작용 ${dangling.length}건: ` +
+        dangling.map((i) => `${i.ingredientId}->${i.foodId}`).join(', '),
+    );
+  }
+  const retiredStillUsed = INTERACTIONS.filter((i) =>
+    RETIRED_FOODS.some((r) => r.id === i.foodId),
+  );
+  if (retiredStillUsed.length > 0) {
+    throw new Error(
+      `은퇴한 Food 를 가리키는 상호작용 ${retiredStillUsed.length}건: ` +
+        retiredStillUsed.map((i) => `${i.ingredientId}->${i.foodId}`).join(', '),
+    );
+  }
+
+  // 은퇴한 Food 삭제. seed 는 upsert 만 하므로 배열에서 지운 행이 기존 DB 에
+  // 그대로 남는다. Interaction 은 Cascade 로 함께 지워진다.
+  const retired = await prisma.food.deleteMany({
+    where: { id: { in: RETIRED_FOODS.map((f) => f.id) } },
+  });
+  if (retired.count > 0) {
+    console.info(`🧹 은퇴한 Food ${retired.count}개 삭제 (딸린 상호작용 포함)`);
+  }
 
   // Seed Foods
   for (const food of FOODS) {
@@ -871,6 +789,22 @@ async function main() {
     });
   }
   console.info(`✅ Seeded ${INTERACTIONS.length} interactions`);
+
+  // seed 에서 지운 행을 회수한다. upsert 만 하면 배열에서 삭제한 행이 기존 DB 에
+  // 그대로 남는다 — 중복이라 지운 맥주/소주 행 9개가 실제로 남아 있었다.
+  // CI 는 매번 빈 DB 라 통과하고 오래된 DB 만 틀리는 종류의 문제다.
+  // source = 'seed:manual' 은 "seed.ts 가 적은 행"이라는 뜻이므로, 그 집합은
+  // 이 배열이 정의한다. 출처 있는 행은 건드리지 않는다.
+  const authored = new Set(INTERACTIONS.map((i) => `${i.ingredientId}|${i.foodId}`));
+  const manual = await prisma.interaction.findMany({
+    where: { source: 'seed:manual' },
+    select: { id: true, ingredientId: true, foodId: true },
+  });
+  const orphans = manual.filter((m) => !authored.has(`${m.ingredientId}|${m.foodId}`));
+  if (orphans.length > 0) {
+    await prisma.interaction.deleteMany({ where: { id: { in: orphans.map((o) => o.id) } } });
+    console.info(`🧹 seed 에서 지운 상호작용 ${orphans.length}행 삭제`);
+  }
 
   console.info('🎉 Seed complete!');
 }
