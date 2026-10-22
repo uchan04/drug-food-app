@@ -1,0 +1,1542 @@
+[
+  {
+    "ingredient": "글리메피리드",
+    "food": "과일주스",
+    "riskLevel": "caution",
+    "keyword": "과일주스",
+    "reasonKo": "3) 저혈당은 당(글루코스 또는 설탕, 예를 들어 설탕덩어리, 당이 첨가된 과일주스, 당이 첨가된 차 등)을 섭취함으로써 대부분 즉시 조절된다.",
+    "source": "mfds:permit:199600863",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199600863",
+      "199600864",
+      "199900923"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "3) 저혈당은 당(글루코스 또는 설탕, 예를 들어 설탕덩어리, 당이 첨가된 과일주스, 당이 첨가된 차 등)을 섭취함으로써 대부분 즉시 조절된다."
+    ]
+  },
+  {
+    "ingredient": "글리메피리드",
+    "food": "설탕",
+    "riskLevel": "caution",
+    "keyword": "설탕",
+    "reasonKo": "3) 저혈당은 당(글루코스 또는 설탕, 예를 들어 설탕덩어리, 당이 첨가된 과일주스, 당이 첨가된 차 등)을 섭취함으로써 대부분 즉시 조절된다.",
+    "source": "mfds:permit:199600863",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199600863",
+      "199600864",
+      "199900923"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "3) 저혈당은 당(글루코스 또는 설탕, 예를 들어 설탕덩어리, 당이 첨가된 과일주스, 당이 첨가된 차 등)을 섭취함으로써 대부분 즉시 조절된다."
+    ]
+  },
+  {
+    "ingredient": "글리메피리드",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "7) 급성 또는 만성 알코올 섭취는 이 약의 혈당강하작용을 예상할 수 없는 방향으로 증가 또는 감소시킬 수 있다.",
+    "source": "mfds:permit:199600863",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199600863",
+      "199600864",
+      "199900923"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "7) 급성 또는 만성 알코올 섭취는 이 약의 혈당강하작용을 예상할 수 없는 방향으로 증가 또는 감소시킬 수 있다.",
+      "5) 알코올섭취자, 특히 식사를 거른 환자의 경우"
+    ]
+  },
+  {
+    "ingredient": "글리메피리드",
+    "food": "음식(일반)",
+    "riskLevel": "caution",
+    "keyword": "음식물",
+    "reasonKo": "6) 설사, 구토 등 위장장애가 있는 환자(음식물의 흡수 부전에 의해 저혈당을 일으킬 우려가 있다.)",
+    "source": "mfds:permit:199600863",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199600863",
+      "199600864",
+      "199900923"
+    ],
+    "evidenceCount": 15,
+    "evidence": [
+      "6) 설사, 구토 등 위장장애가 있는 환자(음식물의 흡수 부전에 의해 저혈당을 일으킬 우려가 있다.)",
+      "이 약은 1일 1회 첫번째 식사와 함께 8 mg을 투여하며, 인슐린은 저용량으로 시작하여 공복혈당 측정치에 따라 대략 일주일 간격으로 증량한다.",
+      "2) 영양불량상태, 불규칙한 식사섭취, 식사를 거른 환자",
+      "5) 알코올섭취자, 특히 식사를 거른 환자의 경우",
+      "4) 식사를 변경했을 경우"
+    ]
+  },
+  {
+    "ingredient": "나프록센",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알콜",
+    "reasonKo": "위장관계 출혈을 증가시키는 다른 위험인자로는 경구용 코르티코스테로이드 또는 항응고제 병용, 비스테로이드성 소염진통제의 장기 사용 알콜 섭취, 고령, 허약한 건강상태 등이 있다.",
+    "source": "mfds:permit:197500016",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197500016",
+      "198300064",
+      "198700731"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "위장관계 출혈을 증가시키는 다른 위험인자로는 경구용 코르티코스테로이드 또는 항응고제 병용, 비스테로이드성 소염진통제의 장기 사용 알콜 섭취, 고령, 허약한 건강상태 등이 있다.",
+      "위장관(창자)계 출혈을 증가시키는 다른 위험인자로는 경구용 코르티코스테로이드 또는 항응고제 병용(함께 복용), 비스테로이드성 소염(항염)진통제의 장기 사용 알콜 섭취, 고령, 허약한 건강상태 등이 있다.",
+      "1) 매일 세잔 이상 정기적으로 술을 마시는 사람이 이 약이나 다른 해열진통제를 복용해야 할 경우 반드시 의사 또는 약사와 상의해야 한다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "마그네슘",
+    "riskLevel": "caution",
+    "keyword": "마그네슘",
+    "reasonKo": "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "아연",
+    "riskLevel": "caution",
+    "keyword": "아연",
+    "reasonKo": "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "제산제(탄산칼슘, 젖산칼슘, 마그네슘유제, 수산화알루미늄 등)는 구역 및 복통의 증상을 경감 시켜줄 수도 있다.",
+      "제산제(탄산칼슘, 젖산칼슘, 마그네슘유제, 수산화알루미늄 등)는 구역 및 복통의 증상을 경감시켜줄 수도 있다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "4) 알코올, 바르비탈계, 카르바마제핀, 페니토인, 리팜피신, 프리미돈은 독시사이클린의 반감기를 감소시킨다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "4) 알코올, 바르비탈계, 카르바마제핀, 페니토인, 리팜피신, 프리미돈은 독시사이클린의 반감기를 감소시킨다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "우유",
+    "riskLevel": "caution",
+    "keyword": "우유",
+    "reasonKo": "2) 처치 : 과량 복용한 경우, 약물의 투여를 중단하고 식도 궤양을 막기 위하여 물이나 우유로 희석한다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "2) 처치 : 과량 복용한 경우, 약물의 투여를 중단하고 식도 궤양을 막기 위하여 물이나 우유로 희석한다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "음식(일반)",
+    "riskLevel": "caution",
+    "keyword": "음식물",
+    "reasonKo": "2) 이 약의 복용 시 위장장애가 있으면 음식물과 함께 복용한다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "2) 이 약의 복용 시 위장장애가 있으면 음식물과 함께 복용한다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "제산제(탄산칼슘, 젖산칼슘, 마그네슘유제, 수산화알루미늄 등)는 구역 및 복통의 증상을 경감 시켜줄 수도 있다.",
+      "제산제(탄산칼슘, 젖산칼슘, 마그네슘유제, 수산화알루미늄 등)는 구역 및 복통의 증상을 경감시켜줄 수도 있다."
+    ]
+  },
+  {
+    "ingredient": "독시사이클린",
+    "food": "칼슘",
+    "riskLevel": "caution",
+    "keyword": "칼슘",
+    "reasonKo": "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198000105",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198000105",
+      "198300718"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철·아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "3) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무트(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "레보티록신",
+    "food": "비타민K",
+    "riskLevel": "caution",
+    "keyword": "비타민K",
+    "reasonKo": "1) 쿠마린계 항응고제와 병용투여시 갑상선호르몬이 비타민K의존성 응고인자의 이화를 촉진하여 상승작용이 나타날 수 있으므로 프로트롬빈시간을 측정하는 등 충분히 관찰하고 쿠마린계 항응고제의 용량을 조절하는 등 신중히 투여한다.",
+    "source": "mfds:permit:197400278",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197400278",
+      "200301116",
+      "200301117"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "1) 쿠마린계 항응고제와 병용투여시 갑상선호르몬이 비타민K의존성 응고인자의 이화를 촉진하여 상승작용이 나타날 수 있으므로 프로트롬빈시간을 측정하는 등 충분히 관찰하고 쿠마린계 항응고제의 용량을 조절하는 등 신중히 투여한다."
+    ]
+  },
+  {
+    "ingredient": "레보티록신",
+    "food": "세인트존스워트",
+    "riskLevel": "caution",
+    "keyword": "세인트존스워트",
+    "reasonKo": "15) 세인트존스워트가 포함된 제품과 같은 효소 유도 약물은 레보티록신의 간 청소율을 증가시켜 갑상선 호르몬의 혈청 농도를 감소시킬 수 있다.",
+    "source": "mfds:permit:197400278",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197400278",
+      "200301116",
+      "200301117"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "15) 세인트존스워트가 포함된 제품과 같은 효소 유도 약물은 레보티록신의 간 청소율을 증가시켜 갑상선 호르몬의 혈청 농도를 감소시킬 수 있다."
+    ]
+  },
+  {
+    "ingredient": "레보티록신",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "5) 콜레스티라민, 철분제제, 알루미늄 함유 제산제와 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하며 신중히 투여한다.",
+    "source": "mfds:permit:197400278",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197400278",
+      "200301116",
+      "200301117"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "5) 콜레스티라민, 철분제제, 알루미늄 함유 제산제와 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하며 신중히 투여한다."
+    ]
+  },
+  {
+    "ingredient": "레보티록신",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "5) 콜레스티라민, 철분제제, 알루미늄 함유 제산제와 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하며 신중히 투여한다.",
+    "source": "mfds:permit:197400278",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197400278",
+      "200301116",
+      "200301117"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "5) 콜레스티라민, 철분제제, 알루미늄 함유 제산제와 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하며 신중히 투여한다."
+    ]
+  },
+  {
+    "ingredient": "레보티록신",
+    "food": "철분",
+    "riskLevel": "caution",
+    "keyword": "철분",
+    "reasonKo": "5) 콜레스티라민, 철분제제, 알루미늄 함유 제산제와 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하며 신중히 투여한다.",
+    "source": "mfds:permit:197400278",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197400278",
+      "200301116",
+      "200301117"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "5) 콜레스티라민, 철분제제, 알루미늄 함유 제산제와 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하며 신중히 투여한다."
+    ]
+  },
+  {
+    "ingredient": "레보티록신",
+    "food": "칼슘",
+    "riskLevel": "caution",
+    "keyword": "칼슘",
+    "reasonKo": "12) 칼슘제제, 세벨라머, 란타늄 등의 인산염과 결합하는 약물을 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하여 신중히 투여한다.(최소 4시간 간격)",
+    "source": "mfds:permit:197400278",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197400278",
+      "200301116",
+      "200301117"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "12) 칼슘제제, 세벨라머, 란타늄 등의 인산염과 결합하는 약물을 병용투여시 이 약의 흡수가 지연 또는 감소될 수 있으므로 투여간격에 주의하여 신중히 투여한다.(최소 4시간 간격)"
+    ]
+  },
+  {
+    "ingredient": "로수바스타틴",
+    "food": "마그네슘",
+    "riskLevel": "caution",
+    "keyword": "마그네슘",
+    "reasonKo": "- 알레글리타자 0.3 mg 7일간; 페노피브레이트 67 mg 1일 3회 7일간; 플루코나졸 200mg 1일 1회 11일간; 포샘프레나비어 700 mg/리토나비어 100 mg 1일 2회 8일간; 케토코나졸 200 mg 1일 2회 7일간; 리팜핀 450 mg 1일 1회 7일간; 실리마린 140mg 1일 3회 5일간 기타 약물의 영향 - 제산제 : 수산화알루미늄, 수산화마그네슘을 함유하는 제산제와 이 약을 병용 투여한 결과, 로수바스타틴의 혈장 농도가 약 50% 감소되었다.",
+    "source": "mfds:permit:200210097",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200210097",
+      "200410326",
+      "200511256"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "- 알레글리타자 0.3 mg 7일간; 페노피브레이트 67 mg 1일 3회 7일간; 플루코나졸 200mg 1일 1회 11일간; 포샘프레나비어 700 mg/리토나비어 100 mg 1일 2회 8일간; 케토코나졸 200 mg 1일 2회 7일간; 리팜핀 450 mg 1일 1회 7일간; 실리마린 140mg 1일 3회 5일간 기타 약물의 영향 - 제산제 : 수산화알루미늄, 수산화마그네슘을 함유하는 제산제와 이 약을 병용 투여한 결과, 로수바스타틴의 혈장 농도가 약 50% 감소되었다."
+    ]
+  },
+  {
+    "ingredient": "로수바스타틴",
+    "food": "비타민K",
+    "riskLevel": "caution",
+    "keyword": "비타민K",
+    "reasonKo": "비타민K 길항제(예:와파린)를 투여받고 있는 환자에서 이 약의 시작, 중단 또는 용량 조절 시 INR 모니터링이 권장된다.",
+    "source": "mfds:permit:200210097",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200210097",
+      "200410326",
+      "200511256"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "비타민K 길항제(예:와파린)를 투여받고 있는 환자에서 이 약의 시작, 중단 또는 용량 조절 시 INR 모니터링이 권장된다."
+    ]
+  },
+  {
+    "ingredient": "로수바스타틴",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "- 알레글리타자 0.3 mg 7일간; 페노피브레이트 67 mg 1일 3회 7일간; 플루코나졸 200mg 1일 1회 11일간; 포샘프레나비어 700 mg/리토나비어 100 mg 1일 2회 8일간; 케토코나졸 200 mg 1일 2회 7일간; 리팜핀 450 mg 1일 1회 7일간; 실리마린 140mg 1일 3회 5일간 기타 약물의 영향 - 제산제 : 수산화알루미늄, 수산화마그네슘을 함유하는 제산제와 이 약을 병용 투여한 결과, 로수바스타틴의 혈장 농도가 약 50% 감소되었다.",
+    "source": "mfds:permit:200210097",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200210097",
+      "200410326",
+      "200511256"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "- 알레글리타자 0.3 mg 7일간; 페노피브레이트 67 mg 1일 3회 7일간; 플루코나졸 200mg 1일 1회 11일간; 포샘프레나비어 700 mg/리토나비어 100 mg 1일 2회 8일간; 케토코나졸 200 mg 1일 2회 7일간; 리팜핀 450 mg 1일 1회 7일간; 실리마린 140mg 1일 3회 5일간 기타 약물의 영향 - 제산제 : 수산화알루미늄, 수산화마그네슘을 함유하는 제산제와 이 약을 병용 투여한 결과, 로수바스타틴의 혈장 농도가 약 50% 감소되었다."
+    ]
+  },
+  {
+    "ingredient": "로수바스타틴",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "- 중등도의 신장애 (크레아티닌 청소율 < 60ml/min) - 갑상선기능저하증 - 유전적인 근질환 병력 또는 가족력이 있는 경우 - 다른 HMG-CoA 전환효소 또는 피브레이트 계열 약물에 대한 근육 독성의 병력이 있는 경우 - 알코올 중독 - 혈장 농도가 증가할 수 있는 상황 - 아시아계 환자 - 피브레이트 계열 약물 병용투여",
+    "source": "mfds:permit:200210097",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200210097",
+      "200410326",
+      "200511256"
+    ],
+    "evidenceCount": 9,
+    "evidence": [
+      "- 중등도의 신장애 (크레아티닌 청소율 < 60ml/min) - 갑상선기능저하증 - 유전적인 근질환 병력 또는 가족력이 있는 경우 - 다른 HMG-CoA 전환효소 또는 피브레이트 계열 약물에 대한 근육 독성의 병력이 있는 경우 - 알코올 중독 - 혈장 농도가 증가할 수 있는 상황 - 아시아계 환자 - 피브레이트 계열 약물 병용투여",
+      "- 신장애환자 - 갑상선기능저하증 - 유전적인 근질환의 병력 또는 가족력이 있는 경우 - 다른 HMG-CoA 환원효소 저해제 또는 피브레이트에 대한 근육 독성의 병력이 있는 경우 - 알코올 남용 - 70세 이상의 노인 - 혈장 농도가 증가할 수 있는 상황 - 피브레이트 계열 약물 병용투여 ㆍ 치료 중에는 특히 권태감이나 열과 관련이 있을 경우, 다른 이유로 설명되지 않는 근육통이나 근육쇠약, 경련을 즉시 보고해야 한다.",
+      "1) 다른 HMG-CoA 환원효소 저해제와 마찬가지로 이 약은 알코올을 과다 섭취하거나 간 질환의 병력이 있는 환자에 투여시 주의해야 한다."
+    ]
+  },
+  {
+    "ingredient": "로수바스타틴",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "- 알레글리타자 0.3 mg 7일간; 페노피브레이트 67 mg 1일 3회 7일간; 플루코나졸 200mg 1일 1회 11일간; 포샘프레나비어 700 mg/리토나비어 100 mg 1일 2회 8일간; 케토코나졸 200 mg 1일 2회 7일간; 리팜핀 450 mg 1일 1회 7일간; 실리마린 140mg 1일 3회 5일간 기타 약물의 영향 - 제산제 : 수산화알루미늄, 수산화마그네슘을 함유하는 제산제와 이 약을 병용 투여한 결과, 로수바스타틴의 혈장 농도가 약 50% 감소되었다.",
+    "source": "mfds:permit:200210097",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200210097",
+      "200410326",
+      "200511256"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "- 알레글리타자 0.3 mg 7일간; 페노피브레이트 67 mg 1일 3회 7일간; 플루코나졸 200mg 1일 1회 11일간; 포샘프레나비어 700 mg/리토나비어 100 mg 1일 2회 8일간; 케토코나졸 200 mg 1일 2회 7일간; 리팜핀 450 mg 1일 1회 7일간; 실리마린 140mg 1일 3회 5일간 기타 약물의 영향 - 제산제 : 수산화알루미늄, 수산화마그네슘을 함유하는 제산제와 이 약을 병용 투여한 결과, 로수바스타틴의 혈장 농도가 약 50% 감소되었다.",
+      "그러나 이 효과는 제산제를 이 약 투여 2시간 후에 투여했을 때에 완화되었다."
+    ]
+  },
+  {
+    "ingredient": "리시노프릴",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "5) 알코올과 병용투여하는 경우에는 알코올 작용이 상승할 수 있으므로 주의한다.",
+    "source": "mfds:permit:199002095",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199002095"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "5) 알코올과 병용투여하는 경우에는 알코올 작용이 상승할 수 있으므로 주의한다."
+    ]
+  },
+  {
+    "ingredient": "리시노프릴",
+    "food": "음식(일반)",
+    "riskLevel": "caution",
+    "keyword": "음식물",
+    "reasonKo": "환자가 최근에 음식물을 섭취하였다면, 약물을 제거하기 위한 조치 (예: 구토, 위세척, 흡착제와 황산나트륨 투여)를 실시한다.",
+    "source": "mfds:permit:199002095",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199002095"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "환자가 최근에 음식물을 섭취하였다면, 약물을 제거하기 위한 조치 (예: 구토, 위세척, 흡착제와 황산나트륨 투여)를 실시한다."
+    ]
+  },
+  {
+    "ingredient": "메트포르민",
+    "food": "설탕",
+    "riskLevel": "caution",
+    "keyword": "설탕",
+    "reasonKo": "이 약의 투여에 의해 저혈당 증상이 인정되는 경우에는 일반적으로 설탕(자당)을 투여하며, α-글루코시다제 저해제(아카보즈, 보글리보스)와의 병용에 의해 저혈당 증상이 인정되는 경우에는 포도당을 투여한다.",
+    "source": "mfds:permit:198500241",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198500241",
+      "198500321",
+      "198801193"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "이 약의 투여에 의해 저혈당 증상이 인정되는 경우에는 일반적으로 설탕(자당)을 투여하며, α-글루코시다제 저해제(아카보즈, 보글리보스)와의 병용에 의해 저혈당 증상이 인정되는 경우에는 포도당을 투여한다."
+    ]
+  },
+  {
+    "ingredient": "메트포르민",
+    "food": "알코올",
+    "riskLevel": "warning",
+    "keyword": "알코올",
+    "reasonKo": "알코올은 이 약이 젖산대사에 영향을 미치게 할 가능성이 있으므로, 이 약을 투여 받는 동안 급ㆍ만성적인 알코올의 과량섭취는 피해야 한다.",
+    "source": "mfds:permit:198500241",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198500241",
+      "198500321",
+      "198801193"
+    ],
+    "evidenceCount": 30,
+    "evidence": [
+      "알코올은 이 약이 젖산대사에 영향을 미치게 할 가능성이 있으므로, 이 약을 투여 받는 동안 급ㆍ만성적인 알코올의 과량섭취는 피해야 한다.",
+      "10) 간 기능장애(손상된 간 기능은 유산산증의 몇몇 경우와 관련이 있기 때문에, 일반적으로 임상적 또는 실험실적으로 간 질환의 증거가 있는 환자에게는 이 약의 투여를 피해야 한다.), 폐경색, 중증의 폐기능장애 환자 및 기타 저산소혈증을 수반하기 쉬운 상태, 과도한 알코올 섭취자, 탈수증, 설사, 구토 등의 위장장애 환자",
+      "- 공복 또는 영양실조 - 간장애 음주 및 알코올이 포함되어 있는 약물의 복용을 피해야 한다.",
+      "따라서 이 약을 투여하는 동안 급성 또는 만성적인 알코올의 과량섭취는 피해야 한다.",
+      "2) 알코올: 특히 다음과 같은 환경에서 급성 알코올 중독기에 유산산증의 위험성이 증가된다.",
+      "환자에게 이 약을 투여하는 동안 급성이든 만성이든 과다한 알코올 섭취의 위험에 대해 조언해야 한다.",
+      "6) 알코올 섭취 : 알코올은 젖산 대사에 대해 이 약이 미치는 영향을 증대시킨다고 알려져 있다.",
+      "9) 저혈당 : 저혈당은 일반적인 사용 환경 하에서 이 약을 단독 투여한 환자에서는 나타나지 않으나, 열량 섭취가 불충분한 경우, 격렬한 운동이 열량 섭취로 보충되지 못한 경우나 다른 혈당강하제(설포닐우레아, 인슐린. 메글리티나이드계 등) 또는 알코올을 병용 투여하는 경우에 발생한다.",
+      "9) 저혈당 : 저혈당은 일반적인 사용 환경 하에서 이 약을 단독 투여한 환자에서는 나타나지 않으나, 열량 섭취가 불충분한 경우, 격렬한 운동이 열량 섭취로 보충되지 못한 경우나 다른 혈당강하제(설폰요소, 인슐린 등) 또는 알코올을 병용 투여하는 경우에 발생한다.",
+      "특히, 고령자, 쇠약하거나 영양 불균형인 환자, 부신이나 뇌하수체 부전 환자 또는 알코올 중독자인 경우 저혈당이 나타나기 쉽다."
+    ]
+  },
+  {
+    "ingredient": "메트포르민",
+    "food": "음식(일반)",
+    "riskLevel": "warning",
+    "keyword": "음식",
+    "reasonKo": "8) 수술 과정의 경우에(음식과 수액의 섭취에 제한이 없는 가벼운 수술은 제외) 이 약은 수술 48시간 전에 일시적으로 중지되어야 하고, 최소 48시간이 지난 후 신기능이 정상이라고 판명된 후에 치료를 다시 시작해야 한다.",
+    "source": "mfds:permit:198500241",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198500241",
+      "198500321",
+      "198801193"
+    ],
+    "evidenceCount": 30,
+    "evidence": [
+      "8) 수술 과정의 경우에(음식과 수액의 섭취에 제한이 없는 가벼운 수술은 제외) 이 약은 수술 48시간 전에 일시적으로 중지되어야 하고, 최소 48시간이 지난 후 신기능이 정상이라고 판명된 후에 치료를 다시 시작해야 한다.",
+      "- 공복 또는 영양실조 - 간장애 음주 및 알코올이 포함되어 있는 약물의 복용을 피해야 한다.",
+      "치료초기 동안 위장관계 증상은 용량과 관련하여 발생되기 때문에 용량을 점차적으로 증가시키거나, 이 약을 식사와 함께 투여함으로써 감소시킬 수 있다.",
+      "13) 경구혈당강하제의 투여는 식사 단독 요법이나 식사와 인슐린의 병용 치료와 비교하여 심혈관계 사망률의 증가와 관련 있다고 보고 된 바 있다.",
+      "이 약은 위장관계 이상반응을 감소시키고 적절한 혈당조절에 필요한 최소용량을 확인하기 위하여 반드시 저용량으로 투여를 시작해야 하며, 1일 2～3회, 1회 500mg을 식사와 함께 투약한다.",
+      "3) 투여 중의 조절 : 투여 중에 투여가 필요 없게 된 경우나, 감량이 필요한 경우 또는 환자의 악화, 감염증의 합병 등에 의해 효과가 없게 되거나 불충분하게 된 경우가 있으므로, 식사 섭취량, 체중변화의 추이, 혈당치, 감염증의 유무 등에 유의하여 투여 지속의 여부, 투여량, 약제의 선택 등에 유의한다.",
+      "이 약을 투여 받은 환자의 공복 시 정맥 혈장의 젖산 농도가 정상상한치 이상이지만 5mmol/L이하인 경우, 유산산증이 임박했다는 것을 나타내지 않으며, 잘 조절되지 않은 당뇨병이나 비만, 지나친 육체활동 또는 검체를 다루는데 있어 기술적인 문제와 같은 다른 기전에 기인할 수 있다.",
+      "2000mg을 초과하는 경우에는 1일 3회로 나누어 식사와 함께 투약하고 1일 최대 2550mg까지 투여할 수 있다.",
+      "일반적인 개시용량은 1일 1회 500 밀리그람이며 식사 중 또는 식사 종료 후 투여한다.",
+      "1) 불규칙한 식사, 식사 섭취량 부족"
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "마그네슘",
+    "riskLevel": "caution",
+    "keyword": "마그네슘",
+    "reasonKo": "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "아연",
+    "riskLevel": "caution",
+    "keyword": "아연",
+    "reasonKo": "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "제산제(탄산칼슘, 젖산칼슘, 마그네슘유제, 수산화알루미늄 등)는 구역 및 복통의 증상을 경감시켜줄 수도 있다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "5) 알코올, 바르비탈계, 카르바마제핀, 페니토인, 리팜피신, 프리미돈은 이 약의 반감기를 감소시킨다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "5) 알코올, 바르비탈계, 카르바마제핀, 페니토인, 리팜피신, 프리미돈은 이 약의 반감기를 감소시킨다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "우유",
+    "riskLevel": "caution",
+    "keyword": "유제품",
+    "reasonKo": "미노사이클린 표준 경구제의 흡수는 음식물, 유류, 유제품 등에 의해 저해될 수 있으므로 식전 1시간 또는 식후 2시간에 투여하여야 한다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "미노사이클린 표준 경구제의 흡수는 음식물, 유류, 유제품 등에 의해 저해될 수 있으므로 식전 1시간 또는 식후 2시간에 투여하여야 한다.",
+      "2) 처치 : 과량복용한 경우, 약물의 투여를 중단하고 식도궤양을 막기 위하여 물이나 우유로 희석한다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "음식(일반)",
+    "riskLevel": "warning",
+    "keyword": "음식",
+    "reasonKo": "6) 주입 직후 격렬한 가글(세구) 및 음식은 피한다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028",
+      "200200085",
+      "200410457"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "6) 주입 직후 격렬한 가글(세구) 및 음식은 피한다.",
+      "6) 주입 직후 격렬한 가글(세구) 및 음식을 피한다.",
+      "미노사이클린 표준 경구제의 흡수는 음식물, 유류, 유제품 등에 의해 저해될 수 있으므로 식전 1시간 또는 식후 2시간에 투여하여야 한다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+      "제산제(탄산칼슘, 젖산칼슘, 마그네슘유제, 수산화알루미늄 등)는 구역 및 복통의 증상을 경감시켜줄 수도 있다."
+    ]
+  },
+  {
+    "ingredient": "미노사이클린",
+    "food": "칼슘",
+    "riskLevel": "caution",
+    "keyword": "칼슘",
+    "reasonKo": "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다.",
+    "source": "mfds:permit:198501028",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198501028"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "4) 칼슘, 마그네슘, 알루미늄을 함유하는 제산제 또는 이들 양이온을 함유하는 다른 약물들, 철ㆍ아연을 함유하고 있는 제제와 약용탄, 카올린, 펙틴 또는 비스무스(bismuth)염 제제에 의해 테트라사이클린계 약물의 흡수가 저하되어 효과가 저하될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "세티리진",
+    "food": "알코올",
+    "riskLevel": "contraindicated",
+    "keyword": "알코올",
+    "reasonKo": "1) 다른 항히스타민제와 마찬가지로 과량의 알코올과 함께 투여하지 않는다.",
+    "source": "mfds:permit:199700120",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199700120",
+      "199700265",
+      "199701033"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "1) 다른 항히스타민제와 마찬가지로 과량의 알코올과 함께 투여하지 않는다.",
+      "라세미체(광학이성질체)가 알코올의 영향을 증가시키지 않을 것으로 보여지나(0.5 g/L 혈액 수준), 알코올 또는 기타 CNS 억제제를 병용 투여하면 경계심이 추가로 감소될 수 있고 수행 장애를 야기할 수 있다."
+    ]
+  },
+  {
+    "ingredient": "세티리진",
+    "food": "음식(일반)",
+    "riskLevel": "caution",
+    "keyword": "음식물",
+    "reasonKo": "4) 세티리진의 흡수 속도는 음식물에 의해 1시간 정도 감소되지만, 흡수 정도는 감소되지 않는다.",
+    "source": "mfds:permit:199700120",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199700120",
+      "199700265",
+      "199701033"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "4) 세티리진의 흡수 속도는 음식물에 의해 1시간 정도 감소되지만, 흡수 정도는 감소되지 않는다."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "마그네슘",
+    "riskLevel": "caution",
+    "keyword": "마그네슘",
+    "reasonKo": "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238",
+      "199000351"
+    ],
+    "evidenceCount": 5,
+    "evidence": [
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘 또는 칼슘 함유제산제를 투여한다.",
+      "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다)."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "아연",
+    "riskLevel": "caution",
+    "keyword": "아연",
+    "reasonKo": "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다).",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다)."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+      "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다)."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "이는 특히 이 약을 알코올과 함께 복용할 때 적용된다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238",
+      "199000351"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "이는 특히 이 약을 알코올과 함께 복용할 때 적용된다."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "오렌지",
+    "riskLevel": "warning",
+    "keyword": "오렌지",
+    "reasonKo": "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "요거트",
+    "riskLevel": "warning",
+    "keyword": "요구르트",
+    "reasonKo": "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "우유",
+    "riskLevel": "warning",
+    "keyword": "우유",
+    "reasonKo": "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238",
+      "199000351"
+    ],
+    "evidenceCount": 5,
+    "evidence": [
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘 또는 칼슘 함유제산제를 투여한다.",
+      "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다)."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "철분",
+    "riskLevel": "caution",
+    "keyword": "철분",
+    "reasonKo": "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다).",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다)."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "칼슘",
+    "riskLevel": "warning",
+    "keyword": "칼슘",
+    "reasonKo": "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238",
+      "199000351"
+    ],
+    "evidenceCount": 7,
+    "evidence": [
+      "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다.",
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘, 알루미늄 또는 칼슘 함유제산제를 투여한다.",
+      "과량투여 시의 이 약의 흡수를 줄이기 위해 마그네슘 또는 칼슘 함유제산제를 투여한다.",
+      "3) 알루미늄 또는 마그네슘 함유 제산제와 같은 양이온 제제, 철분 함유 제제, 칼슘 함유 제제, 아연 또는 철분이 함유된 종합비타민제제, 포스페이트 결합제(예, 세벨라머, 탄산란탄), 수크랄페이트, 항레트로바이러스제, 디다노신과의 병용에 의해 이 약의 흡수가 저하되어 효과가 저하되는 경우가 있으므로 이 약 투여 전 1 ～ 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다(이 제한은 H2 길항제에는 적용되지 않는다)."
+    ]
+  },
+  {
+    "ingredient": "시프로플록사신",
+    "food": "커피",
+    "riskLevel": "caution",
+    "keyword": "카페인",
+    "reasonKo": "11) 이 약과 카페인 및 펜톡시필린을 병용투여 시 카페인 및 펜톡시필린의 대사를 저해하여 카페인 및 펜톡시필린의 혈중 반감기를 연장시킨다.",
+    "source": "mfds:permit:198801052",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198801052",
+      "198902238",
+      "199000351"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "11) 이 약과 카페인 및 펜톡시필린을 병용투여 시 카페인 및 펜톡시필린의 대사를 저해하여 카페인 및 펜톡시필린의 혈중 반감기를 연장시킨다.",
+      "14) 이 약과 카페인 및 펜톡시필린을 병용투여 시 카페인 및 펜톡시필린의 대사를 저해하여 카페인 및 펜톡시필린의 혈중 반감기를 연장시킨다.",
+      "1) 이 약은 시토크롬 P450 1A2 효소의 작용을 억제하므로, 시토크롬 P450으로 대사되는 약물(테오필린, 메틸잔틴, 카페인, 둘록세틴, 로피니롤, 클로자핀, 올란자핀 등)의 혈청농도가 높아져 이들 약물의 독성이 증가할 수 있으므로 병용투여 시 주의해야 한다."
+    ]
+  },
+  {
+    "ingredient": "심바스타틴",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "1) 알코올 중독자, 간장애 또는 그 병력이 있는 환자(이 약은 주로 간에서 대사되고 작용하므로 간장애를 악화시킬 우려가 있다.",
+    "source": "mfds:permit:200200173",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200200173",
+      "200200214"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "1) 알코올 중독자, 간장애 또는 그 병력이 있는 환자(이 약은 주로 간에서 대사되고 작용하므로 간장애를 악화시킬 우려가 있다.",
+      "이 중 일부 환자들의 경우, 심바스타틴 치료 이전에 간기능 검사치가 비정상이었고/또는 상당한 양의 알코올을 섭취하였다.",
+      "알코올 중독자에서 횡문근융해가 나타나기 쉽다는 보고가 있다.)"
+    ]
+  },
+  {
+    "ingredient": "심바스타틴",
+    "food": "자몽주스",
+    "riskLevel": "warning",
+    "keyword": "자몽주스",
+    "reasonKo": "그러나 이 약과 다량(1일 1L이상)의 자몽주스를 병용할 경우, 혈장 HMG-CoA 환원효소 억제 작용을 유의하게 증가시키므로 이 약 투여시 자몽주스를 섭취하지 않도록 한다(5. 일반적 주의 참조).",
+    "source": "mfds:permit:200200173",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200200173",
+      "200200214"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "그러나 이 약과 다량(1일 1L이상)의 자몽주스를 병용할 경우, 혈장 HMG-CoA 환원효소 억제 작용을 유의하게 증가시키므로 이 약 투여시 자몽주스를 섭취하지 않도록 한다(5. 일반적 주의 참조).",
+      "16) 자몽주스: 자몽주스는 CYP3A4를 저해하는 1개 또는 그 이상의 성분을 함유하고 있어 CYP3A4에 의해 대사되는 약물의 혈장 농도를 증가시킬 수 있다."
+    ]
+  },
+  {
+    "ingredient": "아세트아미노펜",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "술",
+    "reasonKo": "1) 매일 세잔 이상 정기적으로 술을 마시는 사람이 이 약이나 다른 해열진통제를 복용해야 할 경우 반드시 의사 또는 약사와 상의해야 한다.",
+    "source": "mfds:permit:198901273",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198901273",
+      "199102938"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "1) 매일 세잔 이상 정기적으로 술을 마시는 사람이 이 약이나 다른 해열진통제를 복용해야 할 경우 반드시 의사 또는 약사와 상의해야 한다.",
+      "9) 알코올을 복용한 사람"
+    ]
+  },
+  {
+    "ingredient": "아세틸살리실산",
+    "food": "마그네슘",
+    "riskLevel": "caution",
+    "keyword": "마그네슘",
+    "reasonKo": "2) 탄산수소나트륨, 탄산마그네슘 등의 알칼리제제와 배합하지 않는다.",
+    "source": "mfds:permit:199001012",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199001012",
+      "199703010"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "2) 탄산수소나트륨, 탄산마그네슘 등의 알칼리제제와 배합하지 않는다."
+    ]
+  },
+  {
+    "ingredient": "아세틸살리실산",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "12) 알코올 : 이 약과 병용 투여시 위장관 점막 손상이 증가하고, 살리실산과 알코올의 상승효과로 인해 출혈시간이 연장된다.",
+    "source": "mfds:permit:199001012",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199001012",
+      "199703010",
+      "199901188"
+    ],
+    "evidenceCount": 5,
+    "evidence": [
+      "12) 알코올 : 이 약과 병용 투여시 위장관 점막 손상이 증가하고, 살리실산과 알코올의 상승효과로 인해 출혈시간이 연장된다.",
+      "2) 매일 세잔 이상 정기적으로 술을 마시는 사람이 이 약이나 다른 해열진통제를 복용해야 할 경우 반드시 의사 또는 약사와 상의해야 한다.",
+      "매일 세잔 이상 정기적으로 술을 마시는 사람이 이 약이나 다른 해열진통제를 복용해야 할 경우 반드시 의사 또는 약사와 상의해야 한다."
+    ]
+  },
+  {
+    "ingredient": "아세틸살리실산",
+    "food": "음식(일반)",
+    "riskLevel": "caution",
+    "keyword": "공복",
+    "reasonKo": "아스피린을 함유하는 제제는 위장관 출혈의 이상반응으로 인하여 공복에 투여하지 않는 것이 일반적이나, 이 제제는 장용정이므로 충분한 물과 함께 식전에 복용할 수 있다.",
+    "source": "mfds:permit:199001012",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199001012",
+      "199703010"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "아스피린을 함유하는 제제는 위장관 출혈의 이상반응으로 인하여 공복에 투여하지 않는 것이 일반적이나, 이 제제는 장용정이므로 충분한 물과 함께 식전에 복용할 수 있다."
+    ]
+  },
+  {
+    "ingredient": "아토르바스타틴",
+    "food": "마그네슘",
+    "riskLevel": "caution",
+    "keyword": "마그네슘",
+    "reasonKo": "9) 제산제 : 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제(antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66).",
+    "source": "mfds:permit:200410085",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200410085",
+      "200410086",
+      "200410087"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "9) 제산제 : 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제(antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66).",
+      "10) 제산제: 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제 (antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66)."
+    ]
+  },
+  {
+    "ingredient": "아토르바스타틴",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "9) 제산제 : 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제(antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66).",
+    "source": "mfds:permit:200410085",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200410085",
+      "200410086",
+      "200410087"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "9) 제산제 : 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제(antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66).",
+      "10) 제산제: 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제 (antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66)."
+    ]
+  },
+  {
+    "ingredient": "아토르바스타틴",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "(1) 신기능 손상 또는 신장애 병력이 있는 환자 (2 )갑상샘기능저하증 환자 (3) 유전성 근육이상의 개인병력 또는 가족력이 있는 환자 (4) 스타틴계열이나 피브리트계열 사용시 근육 독성의 병력이 있는 환자 (5) 간질환의 병력이 있거나 또는 상당량의 알코올을 섭취하는 경우 (6) 70세를 초과하는 노인으로 횡문근융해증의 소인이 있는 환자",
+    "source": "mfds:permit:200410085",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200410085",
+      "200410086",
+      "200410087"
+    ],
+    "evidenceCount": 9,
+    "evidence": [
+      "(1) 신기능 손상 또는 신장애 병력이 있는 환자 (2 )갑상샘기능저하증 환자 (3) 유전성 근육이상의 개인병력 또는 가족력이 있는 환자 (4) 스타틴계열이나 피브리트계열 사용시 근육 독성의 병력이 있는 환자 (5) 간질환의 병력이 있거나 또는 상당량의 알코올을 섭취하는 경우 (6) 70세를 초과하는 노인으로 횡문근융해증의 소인이 있는 환자",
+      "(1) 신기능 손상 또는 신장애 병력이 있는 환자 (2) 갑상샘기능저하증 환자 (3) 유전성 근육이상의 개인병력 또는 가족력이 있는 환자 (4) 스타틴계열이나 피브레이트(fibrate)계열 사용시 근육 독성의 병력이 있는 환자 (5) 간질환의 병력 또는 상당량의 알코올을 섭취하는 경우 (6) 70세를 초과하는 고령자로 횡문근융해의 소인이 있는 환자",
+      "3) 알코올 중독자 및 상당량의 알코올을 섭취하는 경우 또는 간질환이 있거나 그 병력이 있는 환자(‘3. 이상반응’항 참조)",
+      "아토르바스타틴은 알코올남용자 (과다복용자) 또는 간질환의 병력이 있는 사람의 경우 신중하게 투여하여야 한다.",
+      "아토르바스타틴은 알코올남용자(과다복용자) 또는 간질환의 병력이 있는 사람의 경우 신중하게 투여하여야 한다.",
+      "1) 알코올 중독자 또는 간질환의 병력이 있는 환자(‘4. 이상반응’항 참조)"
+    ]
+  },
+  {
+    "ingredient": "아토르바스타틴",
+    "food": "자몽",
+    "riskLevel": "caution",
+    "keyword": "자몽",
+    "reasonKo": "17) 자몽주스 : 자몽주스는 하나이상의 CYP3A4를 억제하는 성분을 함유하고 있으며, 이는 자몽쥬스 섭취량이 지나칠 경우(하루 1.2 L이상) 아토르바스타틴의 혈중 농도를 증가시킬 수 있다.",
+    "source": "mfds:permit:200410085",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200410085",
+      "200410086",
+      "200410087"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "17) 자몽주스 : 자몽주스는 하나이상의 CYP3A4를 억제하는 성분을 함유하고 있으며, 이는 자몽쥬스 섭취량이 지나칠 경우(하루 1.2 L이상) 아토르바스타틴의 혈중 농도를 증가시킬 수 있다.",
+      "따라서, 암로디핀은 자몽이나 자몽주스와 병용시 일부 환자에서 생체이용률 증가로 인한 혈압강하효과의 증가가 나타날 수 있으므로, 병용투여를 권장하지 않는다."
+    ]
+  },
+  {
+    "ingredient": "아토르바스타틴",
+    "food": "자몽주스",
+    "riskLevel": "caution",
+    "keyword": "자몽주스",
+    "reasonKo": "20) 자몽주스: 자몽주스는 하나이상의 CYP3A4를 억제하는 성분을 함유하고 있으며, 이는 자몽주스 섭취량이 지나칠 경우 (하루 1L 이상) 아토르바스타틴의 혈중 농도를 증가시킬 수 있다.",
+    "source": "mfds:permit:200410085",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200410085",
+      "200410086",
+      "200410087"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      "20) 자몽주스: 자몽주스는 하나이상의 CYP3A4를 억제하는 성분을 함유하고 있으며, 이는 자몽주스 섭취량이 지나칠 경우 (하루 1L 이상) 아토르바스타틴의 혈중 농도를 증가시킬 수 있다.",
+      "17) 자몽주스 : 자몽주스는 하나이상의 CYP3A4를 억제하는 성분을 함유하고 있으며, 이는 자몽쥬스 섭취량이 지나칠 경우(하루 1.2 L이상) 아토르바스타틴의 혈중 농도를 증가시킬 수 있다.",
+      "따라서, 암로디핀은 자몽이나 자몽주스와 병용시 일부 환자에서 생체이용률 증가로 인한 혈압강하효과의 증가가 나타날 수 있으므로, 병용투여를 권장하지 않는다."
+    ]
+  },
+  {
+    "ingredient": "아토르바스타틴",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "9) 제산제 : 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제(antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66).",
+    "source": "mfds:permit:200410085",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200410085",
+      "200410086",
+      "200410087"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "9) 제산제 : 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제(antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66).",
+      "10) 제산제: 이 약과 마그네슘 그리고 수산화알루미늄을 함유하는 경구용 제산제 (antacid) 현탁액과 병용투여시 아토르바스타틴의 AUC가 감소하였다(AUC 비율: 0.66)."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "긴장성 골절이 의심되는 환자는 이미 알려진 원인 및 위험인자(예를 들면 비타민 D 부족, 흡수불량, 글루코코르티코이드 사용, 이전의 긴장성 골절, 하지 말단의 관절염 또는 골절, 극심하거나 증가된 운동량, 당뇨, 만성적 알코올 남용)을 포함하여 평가되어야 하며, 적절한 정형외과상의 처치를 받아야 한다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "긴장성 골절이 의심되는 환자는 이미 알려진 원인 및 위험인자(예를 들면 비타민 D 부족, 흡수불량, 글루코코르티코이드 사용, 이전의 긴장성 골절, 하지 말단의 관절염 또는 골절, 극심하거나 증가된 운동량, 당뇨, 만성적 알코올 남용)을 포함하여 평가되어야 하며, 적절한 정형외과상의 처치를 받아야 한다.",
+      "체중부하 운동은 흡연 및/또는 지나친 음주와 같은 특정 습관 요인의 변화와 더불어 고려되어져야 한다."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "오렌지",
+    "riskLevel": "caution",
+    "keyword": "오렌지",
+    "reasonKo": "오렌지 쥬스나 커피와 함께 복용했을 경우에도 알렌드로네이트의 흡수가 현저히 감소됨이 나타났다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "오렌지 쥬스나 커피와 함께 복용했을 경우에도 알렌드로네이트의 흡수가 현저히 감소됨이 나타났다."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "우유",
+    "riskLevel": "caution",
+    "keyword": "우유",
+    "reasonKo": "과량을 경구 복용시에 저칼슘혈증, 저인산염혈증, 배탈, 가슴앓이, 식도염, 위염, 궤양 등의 상부 위장관 이상반응이 발생할 수 있으므로 이 약과 결합할 수 있는 우유나 제산제를 복용하도록 한다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "과량을 경구 복용시에 저칼슘혈증, 저인산염혈증, 배탈, 가슴앓이, 식도염, 위염, 궤양 등의 상부 위장관 이상반응이 발생할 수 있으므로 이 약과 결합할 수 있는 우유나 제산제를 복용하도록 한다."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "음식(일반)",
+    "riskLevel": "warning",
+    "keyword": "음식물",
+    "reasonKo": "환자에게 만약 식도질환 증상(음식물을 삼키기 어렵거나 아플 때, 흉골후방의 통증, 가슴앓이가 생기거나 심해졌을 때)이 나타나면 반드시 이 약의 복용을 중지하고 의사와 상의하도록 지시해야 한다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 8,
+    "evidence": [
+      "환자에게 만약 식도질환 증상(음식물을 삼키기 어렵거나 아플 때, 흉골후방의 통증, 가슴앓이가 생기거나 심해졌을 때)이 나타나면 반드시 이 약의 복용을 중지하고 의사와 상의하도록 지시해야 한다.",
+      "광천수, 보리차를 포함한 다른 음료나 음식, 약물은 알렌드로네이트의 흡수를 저하시킬 수 있다(‘상호작용’항 참조).",
+      "이 약을 복용한 후 30분 이내 혹은 동시에 음식물을 섭취하면 알렌드로네이트의 체내흡수가 저하되어 효과가 감소할 수 있다.",
+      "(2) 약물을 위로 신속히 도달시켜 식도 자극의 가능성을 줄이기 위하여 환자는 반드시 이 약을 충분한 양의 물(170∼230 mL)과 함께 삼키고, 복용 후에는 최소한 30분간 그리고 그날의 최초 음식물 섭취 후까지 누워서는 안된다.",
+      "2) 환자에게 제공되어야 할 정보 (1) 환자에게 반드시 아침에 기상하여 섭취하게 되는 최초 음식물, 음료 또는 약물을 먹기 최소 30분전에 물과 함께 이 약을 복용해야 기대 효과를 얻을 수 있음을 지시해야 한다.",
+      "1주 1회 이 약 1정(70 mg/2800 IU 또는 70 mg/5600 IU)을 아침에 음식물, 음료수 또는 다른 약물 섭취 최소한 30분전에 충분한 양의 물과 함께 복용한다(‘일반적 주의’항 참조).",
+      "환자가 음식물로부터 칼슘 및 비타민 D 섭취가 불충분할 경우 보충제를 복용해야 한다(사용상의 주의사항, 4. 일반적 주의,",
+      "복용 후에는 적어도 30분간 그리고 최초 음식물 섭취 후까지 누워서는 안 된다."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "제산제",
+    "riskLevel": "caution",
+    "keyword": "제산제",
+    "reasonKo": "2) 칼슘보충제/제산제 칼슘보충제나 제산제 및 일부 경구용 약물들은 알렌드로네이트의 흡수를 방해하는 것으로 알려져 있다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "2) 칼슘보충제/제산제 칼슘보충제나 제산제 및 일부 경구용 약물들은 알렌드로네이트의 흡수를 방해하는 것으로 알려져 있다.",
+      "과량을 경구 복용시에 저칼슘혈증, 저인산염혈증, 배탈, 가슴앓이, 식도염, 위염, 궤양 등의 상부 위장관 이상반응이 발생할 수 있으므로 이 약과 결합할 수 있는 우유나 제산제를 복용하도록 한다."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "칼슘",
+    "riskLevel": "caution",
+    "keyword": "칼슘",
+    "reasonKo": "2) 칼슘보충제/제산제 칼슘보충제나 제산제 및 일부 경구용 약물들은 알렌드로네이트의 흡수를 방해하는 것으로 알려져 있다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "2) 칼슘보충제/제산제 칼슘보충제나 제산제 및 일부 경구용 약물들은 알렌드로네이트의 흡수를 방해하는 것으로 알려져 있다.",
+      "식수나 minipump에 의한 칼슘보충은 저칼슘혈증의 정도를 감소시키지 못했으며, 분만 지연으로 인한 모체 및 신생자의 사망을 예방하지도 못했다.",
+      "환자가 음식물로부터 칼슘 및 비타민 D 섭취가 불충분할 경우 보충제를 복용해야 한다(사용상의 주의사항, 4. 일반적 주의,",
+      "중증 고칼슘혈증 환자의 표준치료법으로는 식이 내 칼슘섭취 제한, 수분 공급, 전신 글루코코르티코이드 투여요법 등이 있다.",
+      "정맥을 통한 칼슘보충은 모체의 사망은 예방했으나 태자의 사망은 예방하지 못했다.",
+      "(4) 환자가 칼슘 섭취가 불충분할 경우 보충제를 복용해야 한다."
+    ]
+  },
+  {
+    "ingredient": "알렌드로네이트",
+    "food": "커피",
+    "riskLevel": "caution",
+    "keyword": "커피",
+    "reasonKo": "오렌지 쥬스나 커피와 함께 복용했을 경우에도 알렌드로네이트의 흡수가 현저히 감소됨이 나타났다.",
+    "source": "mfds:permit:201403317",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "201403317"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "오렌지 쥬스나 커피와 함께 복용했을 경우에도 알렌드로네이트의 흡수가 현저히 감소됨이 나타났다."
+    ]
+  },
+  {
+    "ingredient": "알로푸리놀",
+    "food": "알루미늄",
+    "riskLevel": "caution",
+    "keyword": "알루미늄",
+    "reasonKo": "12) 수산화알루미늄과 병용하는 경우 알로푸리놀의 효과가 약화될 수 있다.",
+    "source": "mfds:permit:197000050",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197000050",
+      "197900066"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "12) 수산화알루미늄과 병용하는 경우 알로푸리놀의 효과가 약화될 수 있다."
+    ]
+  },
+  {
+    "ingredient": "알로푸리놀",
+    "food": "철분",
+    "riskLevel": "caution",
+    "keyword": "철분",
+    "reasonKo": "3) 동물실험에서 철분제제와 병용하는 경우 이 약의 다량투여에 의하여 간에 철분 축적이 증가했다는 보고가 있다.",
+    "source": "mfds:permit:197000050",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197000050",
+      "197900066"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "3) 동물실험에서 철분제제와 병용하는 경우 이 약의 다량투여에 의하여 간에 철분 축적이 증가했다는 보고가 있다."
+    ]
+  },
+  {
+    "ingredient": "암로디핀",
+    "food": "자몽",
+    "riskLevel": "caution",
+    "keyword": "자몽",
+    "reasonKo": "3) 자몽쥬스 : 암로디핀은 자몽이나 자몽쥬스와 병용시 일부 환자에서 생체이용률 증가로 인한 혈압강하효과의 증가가 나타날 수 있으므로, 병용투여를 권장하지 않는다.",
+    "source": "mfds:permit:200400113",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200400113",
+      "200400215",
+      "200400508"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "3) 자몽쥬스 : 암로디핀은 자몽이나 자몽쥬스와 병용시 일부 환자에서 생체이용률 증가로 인한 혈압강하효과의 증가가 나타날 수 있으므로, 병용투여를 권장하지 않는다."
+    ]
+  },
+  {
+    "ingredient": "암로디핀",
+    "food": "칼슘",
+    "riskLevel": "caution",
+    "keyword": "칼슘",
+    "reasonKo": "칼슘체널저해제의 효과를 반전시키는데 칼슘글루콘산염의 정맥투여가 유용할 수 있다.",
+    "source": "mfds:permit:200400113",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200400113",
+      "200400215",
+      "200400508"
+    ],
+    "evidenceCount": 3,
+    "evidence": [
+      "칼슘체널저해제의 효과를 반전시키는데 칼슘글루콘산염의 정맥투여가 유용할 수 있다."
+    ]
+  },
+  {
+    "ingredient": "에날라프릴",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "6) 알코올과 병용투여하는 경우에는 알코올 작용이 상승할 수 있으므로 주의한다.",
+    "source": "mfds:permit:198800153",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198800153",
+      "198900125"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      "6) 알코올과 병용투여하는 경우에는 알코올 작용이 상승할 수 있으므로 주의한다."
+    ]
+  },
+  {
+    "ingredient": "와파린",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+    "source": "mfds:permit:200502107",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200502107",
+      "200600456"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+      "8) 알코올 중독 또는 정신질환 환자"
+    ]
+  },
+  {
+    "ingredient": "와파린",
+    "food": "야채",
+    "riskLevel": "caution",
+    "keyword": "야채",
+    "reasonKo": ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+    "source": "mfds:permit:200502107",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200502107",
+      "200600456"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수"
+    ]
+  },
+  {
+    "ingredient": "와파린",
+    "food": "지방",
+    "riskLevel": "caution",
+    "keyword": "지방",
+    "reasonKo": ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+    "source": "mfds:permit:200502107",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200502107",
+      "200600456"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수"
+    ]
+  },
+  {
+    "ingredient": "와파린 나트륨",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+    "source": "mfds:permit:200502107",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200502107",
+      "200600456"
+    ],
+    "evidenceCount": 4,
+    "evidence": [
+      ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+      "8) 알코올 중독 또는 정신질환 환자"
+    ]
+  },
+  {
+    "ingredient": "와파린 나트륨",
+    "food": "야채",
+    "riskLevel": "caution",
+    "keyword": "야채",
+    "reasonKo": ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+    "source": "mfds:permit:200502107",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200502107",
+      "200600456"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수"
+    ]
+  },
+  {
+    "ingredient": "와파린 나트륨",
+    "food": "지방",
+    "riskLevel": "caution",
+    "keyword": "지방",
+    "reasonKo": ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수",
+    "source": "mfds:permit:200502107",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "200502107",
+      "200600456"
+    ],
+    "evidenceCount": 2,
+    "evidence": [
+      ": 비타민 K, 지방, 야채류 섭취, 신생아의 비타민 K 결핍, 비타민 C 결핍, 발열, 알코올 중독, X선 치료, 설사로 인한 비타민 K의 큰 손실 및 장에서의 소량 흡수"
+    ]
+  },
+  {
+    "ingredient": "이부프로펜",
+    "food": "알코올",
+    "riskLevel": "caution",
+    "keyword": "알코올",
+    "reasonKo": "(19) 이 약을 포함한 비스테로이드성 소염진통제(NSAID)와 알코올을 함께 복용하는 경우 알코올의 바람직하지 않은 효과(특히, 위장관 또는 중추신경계 관련 영향)가 증가될 수 있다.",
+    "source": "mfds:permit:197700120",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "197700120",
+      "198300343",
+      "198400131"
+    ],
+    "evidenceCount": 7,
+    "evidence": [
+      "(19) 이 약을 포함한 비스테로이드성 소염진통제(NSAID)와 알코올을 함께 복용하는 경우 알코올의 바람직하지 않은 효과(특히, 위장관 또는 중추신경계 관련 영향)가 증가될 수 있다.",
+      "1) 매일 세잔 이상 정기적으로 술을 마시는 사람이 이 약이나 다른 해열진통제를 복용해야 할 경우 반드시 의사 또는 약사와 상의해야 한다.",
+      "알코올과의 병용 시 더 크게 영향을 미칠 수 있다."
+    ]
+  },
+  {
+    "ingredient": "이부프로펜",
+    "food": "음식(일반)",
+    "riskLevel": "caution",
+    "keyword": "공복",
+    "reasonKo": "체중이 30kg미만인 어린이는 1일량이 500mg(25ml)을 초과해서는 안되며 공복시 투여는 피하는 것이 바람직하다.",
+    "source": "mfds:permit:198400131",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "198400131"
+    ],
+    "evidenceCount": 1,
+    "evidence": [
+      "체중이 30kg미만인 어린이는 1일량이 500mg(25ml)을 초과해서는 안되며 공복시 투여는 피하는 것이 바람직하다."
+    ]
+  },
+  {
+    "ingredient": "플루옥세틴",
+    "food": "세인트존스워트",
+    "riskLevel": "contraindicated",
+    "keyword": "세인트존스워트",
+    "reasonKo": "(용법ㆍ용량 항 및 2. 다음 환자에는 투여하지 말 것 항 참조) 예를 들어 트립탄 계열 약물들, 삼환계 항우울제, 펜타닐, 리튬, 트라마돌, 부스피론, 트립토판 및 세인트존스워트(St. John's Wort)와 같은 다른 세로토닌 작동성 약물들과 동 제제를 병용투여하는 것이 임상적으로 유익성이 있다면 환자들은, 특히 치료개시 중 및 용량을 증가할 때, 잠재적으로 증가된 세로토닌 증후군 위험성에 대하여 인식해야 한다.",
+    "source": "mfds:permit:199701295",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199701295",
+      "199801099",
+      "199801263"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "(용법ㆍ용량 항 및 2. 다음 환자에는 투여하지 말 것 항 참조) 예를 들어 트립탄 계열 약물들, 삼환계 항우울제, 펜타닐, 리튬, 트라마돌, 부스피론, 트립토판 및 세인트존스워트(St. John's Wort)와 같은 다른 세로토닌 작동성 약물들과 동 제제를 병용투여하는 것이 임상적으로 유익성이 있다면 환자들은, 특히 치료개시 중 및 용량을 증가할 때, 잠재적으로 증가된 세로토닌 증후군 위험성에 대하여 인식해야 한다.",
+      "17) 세로토닌 증후군 : 동 제제를 포함한 세로토닌-노르에피네프린재흡수억제제(SNRIs) 및 세로토닌선택적재흡수억제제(SSRIs)를 단독으로 투여했을 뿐만 아니라 특히 다른 세로토닌 작동성 약물들(트립탄계열약물, 삼환계 항우울제, 펜타닐, 리튬, 트라마돌, 트립토판, 부스피론, 세인트존스워트(St. John's Wort) 포함) 및 세로토닌대사를 저해하는 약물들(특히 둘 다 정신질환 치료를 위한 MAO저해제 및 리네졸리드 및 정맥주사용 메칠렌블루 제제와 같은 다른 제제)을 병용투여했을 때 잠재적으로 생명을 위협하는 세로토닌증후군 발전이 보고되었다."
+    ]
+  },
+  {
+    "ingredient": "플루옥세틴",
+    "food": "알코올",
+    "riskLevel": "warning",
+    "keyword": "알코올",
+    "reasonKo": "그러나 이 약 투여 시 알코올의 섭취는 권고되지 않는다.",
+    "source": "mfds:permit:199701295",
+    "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
+    "itemSeqs": [
+      "199701295",
+      "199801099",
+      "199801263"
+    ],
+    "evidenceCount": 6,
+    "evidence": [
+      "그러나 이 약 투여 시 알코올의 섭취는 권고되지 않는다.",
+      "3) 병용약물 또는 알코올의 복용: 환자들은 알코올 또는 생약을 포함한 일반약이나 전문약을 복용하고 있거나 또는 복용계획이 있다면 담당의사의 조언을 구해야 한다."
+    ]
+  }
+]
