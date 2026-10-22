@@ -24,6 +24,12 @@ export class InteractionController {
     return this.interactionService.analyzeUserBox(user.sub, lang);
   }
 
+  @Get('stats')
+  @ApiOperation({ summary: '데이터베이스 규모 (출처 있는 행 수 포함)' })
+  async stats() {
+    return this.interactionService.stats();
+  }
+
   @Get('drug/:drugId')
   @ApiOperation({ summary: '개별 약물 상성 분석' })
   @ApiQuery({ name: 'lang', required: false, enum: ['ko', 'en'] })

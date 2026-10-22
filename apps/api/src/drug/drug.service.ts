@@ -9,9 +9,20 @@ export class DrugService {
   async getAll() {
     const drugs = await this.prisma.drug.findMany({
       orderBy: [{ category: 'asc' }, { nameKo: 'asc' }],
-      select: { id: true, nameKo: true, nameEn: true, category: true },
+      select: {
+        id: true,
+        nameKo: true,
+        nameEn: true,
+        category: true,
+        // 상호작용은 성분에 달려 있고 약마다 성분이 여러 개일 수 있다.
+        // 목록에서 어느 약에 데이터가 얼마나 있는지 보이게 하려고 센다.
+        ingredients: { select: { _count: { select: { interactions: true } } } },
+      },
     });
-    return drugs;
+    return drugs.map(({ ingredients, ...drug }) => ({
+      ...drug,
+      interactionCount: ingredients.reduce((n, i) => n + i._count.interactions, 0),
+    }));
   }
 
   async search(query: string, lang: 'ko' | 'en', page: number, limit: number) {

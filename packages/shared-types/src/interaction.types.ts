@@ -36,8 +36,13 @@ export interface DrugInteraction {
   food: FoodItem;
   riskLevel: RiskLevel;
   reason: string; // Localized
-  sideEffects: string; // Localized
+  /** 식약처 허가사항에서 추출한 행에는 없다. 의료 정보라 지어내지 않는다. */
+  sideEffects: string | null; // Localized
   timeGapHours: number | null;
+  /** 출처. 'mfds:permit:<품목기준코드>' 또는 'seed:manual'(손으로 적은 행). */
+  source: string;
+  /** 원본을 받은 위치. 손으로 적은 행은 null. */
+  sourceUrl: string | null;
 }
 
 /** Full interaction report for user's medicine box */
