@@ -58,6 +58,11 @@ jobs:
       - name: Seed test data
         run: pnpm --filter api exec prisma db seed
 
+      # 커밋된 pipeline/curated/interactions.json 으로 적재한다. API 키도 원본
+      # 데이터도 필요 없다. 로더가 깨지면 여기서 드러난다.
+      - name: Load extracted interactions
+        run: pnpm --filter api load:interactions
+
       - name: Lint
         run: pnpm lint
 
@@ -133,6 +138,8 @@ jobs:
         run: |
           python3 parse.py
           python3 extract.py
+          python3 normalize.py --demo
+          python3 review.py --demo
           python3 test_fetch.py
 
       # eval/labels.tsv 가 문장을 그대로 담고 있어서 원본 데이터도 API 키도 필요 없다.
