@@ -86,7 +86,10 @@ def co_ingredients(doc):
     if len(names) < 2:
         return []
     own = MAIN_INGR_ALIAS.get(doc["query_ingredient"], doc["query_ingredient"])
-    others = [n for n in names if not n.startswith(own)]
+    # 접두어가 아니라 부분문자열로 본다. 광학이성질체는 접두어가 붙는다 —
+    # 에스암로디핀(텔미누보), 레보세티리진. 같은 활성 부분이라 상호작용 기전이
+    # 같으므로 '이 약' 쪽으로 센다. round 3 에서 가드가 멈춰서 알았다.
+    others = [n for n in names if own not in n]
     if len(others) == len(names):
         raise SystemExit(
             f"복합제 {doc['item_seq']}({doc['item_name']}) 의 성분 {names} 에 "
@@ -159,8 +162,10 @@ RISK_RULES = (
                          "함께 투여하지 않는다", "복용하지 않는다")),
     # "권장하지 않" 은 "권고되지 않" 과 같은 뜻인데 조사만 다르다. 암로디핀 자몽의
     # "병용투여를 권장하지 않는다" 4건이 전부 caution 으로 떨어져 있었다.
+    # "섭취하지 않도록"만 있었다. round 3 dev 에서 "섭취를 하지 않도록 알려주어야
+    # 한다"가 caution 으로 떨어졌다. 조사가 끼어든 형태까지 받는다.
     ("warning", ("피해야", "피한다", "권고되지 않", "권장하지 않", "병용하지 않는 것이 바람직",
-                 "투여하지 않는 것이 바람직", "섭취하지 않도록", "중지", "삼가")),
+                 "투여하지 않는 것이 바람직", "하지 않도록", "중지", "삼가")),
 )
 
 
@@ -237,7 +242,9 @@ def risk_level(sentence, keyword=None):
              if keyword else [])
     for level, markers in RISK_RULES:
         for marker in markers:
-            for m in re.finditer(re.escape(marker), text):
+            # 어절 안에 공백이 들어간 표기를 견딘다 ("피 해야"). extract.loose 와
+            # 같은 이유다 — 제조사가 줄바꿈을 공백으로 흘린다.
+            for m in extract.loose(marker).finditer(text):
                 if _INTERVAL.search(text, max(0, m.start() - _INTERVAL_GAP), m.start()):
                     continue
                 if not spans:
@@ -373,6 +380,11 @@ def demo():
                       "및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다", "칼슘") == "caution"
     # 같은 문구인데 간격 지시가 없으면 경고다. 둘을 가르는 것이 간격 표현이다.
     assert risk_level("칼슘 함유 제제와 이 약은 병용하지 않는 것이 바람직하다", "칼슘") == "warning"
+
+    # 조사가 끼어든 회피 지시도 경고다 (round 3 dev).
+    assert risk_level("과도한 알코올 섭취를 하지 않도록 알려주어야 한다", "알코올") == "warning"
+    # 어절 안에 공백이 들어가도 표지를 찾는다 ("피 해야"). 제조사 줄바꿈 흔적이다.
+    assert risk_level("알코올의 과량섭취는 피 해야 한다", "알코올") == "warning"
 
     # 글자 거리로 거르지 않는다. 거리가 멀어도 구조가 같으면 적용된다.
     # (서트랄린 세인트존스워트의 "금기해야 한다"가 121자 떨어져 있었다.)
