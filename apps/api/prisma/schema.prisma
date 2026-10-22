@@ -119,9 +119,12 @@ model Interaction {
   foodId        String    @map("food_id")
   riskLevel     RiskLevel @map("risk_level")
   reasonKo      String    @map("reason_ko")
-  reasonEn      String    @map("reason_en")
-  sideEffectsKo String    @map("side_effects_ko")
-  sideEffectsEn String    @map("side_effects_en")
+  // 영문과 부작용은 선택이다. 식약처 허가사항은 한국어 원문만 제공하므로
+  // 추출한 행에는 이 값이 없다. 의료 정보에서 번역·부작용을 지어내는 것은
+  // 빈 값보다 나쁘다. 손으로 적은 seed 행에는 들어 있다.
+  reasonEn      String?   @map("reason_en")
+  sideEffectsKo String?   @map("side_effects_ko")
+  sideEffectsEn String?   @map("side_effects_en")
   timeGapHours  Int?      @map("time_gap_hours")
   createdAt     DateTime  @default(now()) @map("created_at")
 

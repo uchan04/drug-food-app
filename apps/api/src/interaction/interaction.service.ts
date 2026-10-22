@@ -60,8 +60,10 @@ export class InteractionService {
         nutrients: interaction.food.nutrients,
       },
       riskLevel: interaction.riskLevel,
-      reason: lang === 'ko' ? interaction.reasonKo : interaction.reasonEn,
-      sideEffects: lang === 'ko' ? interaction.sideEffectsKo : interaction.sideEffectsEn,
+      // 추출한 행은 영문이 없다. null 을 내려주면 영어 사용자에게 설명이
+      // 사라지므로 한국어 원문으로 대체한다. 없는 것보다 낫다.
+      reason: lang === 'ko' ? interaction.reasonKo : interaction.reasonEn ?? interaction.reasonKo,
+      sideEffects: lang === 'ko' ? interaction.sideEffectsKo : interaction.sideEffectsEn ?? interaction.sideEffectsKo,
       timeGapHours: interaction.timeGapHours,
       drugName: lang === 'ko'
         ? interaction.ingredient.drug.nameKo
@@ -115,8 +117,10 @@ export class InteractionService {
         nutrients: interaction.food.nutrients,
       },
       riskLevel: interaction.riskLevel,
-      reason: lang === 'ko' ? interaction.reasonKo : interaction.reasonEn,
-      sideEffects: lang === 'ko' ? interaction.sideEffectsKo : interaction.sideEffectsEn,
+      // 추출한 행은 영문이 없다. null 을 내려주면 영어 사용자에게 설명이
+      // 사라지므로 한국어 원문으로 대체한다. 없는 것보다 낫다.
+      reason: lang === 'ko' ? interaction.reasonKo : interaction.reasonEn ?? interaction.reasonKo,
+      sideEffects: lang === 'ko' ? interaction.sideEffectsKo : interaction.sideEffectsEn ?? interaction.sideEffectsKo,
       timeGapHours: interaction.timeGapHours,
     }));
 

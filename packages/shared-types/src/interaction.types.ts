@@ -62,9 +62,10 @@ export interface InteractionDetail extends BaseEntity {
   foodId: string;
   riskLevel: RiskLevel;
   reasonKo: string;
-  reasonEn: string;
-  sideEffectsKo: string;
-  sideEffectsEn: string;
+  /** 식약처에서 추출한 행은 한국어 원문만 있다 */
+  reasonEn: string | null;
+  sideEffectsKo: string | null;
+  sideEffectsEn: string | null;
   timeGapHours: number | null;
 }
 
