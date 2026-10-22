@@ -95,9 +95,9 @@ def errors(rows, kind):
         print(f"  r{r['round']} [{r['keyword']}] {r['sentence'][:120]}")
 
 
-# CI 하한. 측정값(전체 정밀도 0.808 / 재현율 1.000)보다 낮게 잡아서, 규칙을
+# CI 하한. 측정값(전체 정밀도 0.836 / 재현율 1.000)보다 낮게 잡아서, 규칙을
 # 고쳤을 때 통계적 요동이 아니라 실제 퇴행만 걸리게 한다. 올릴 때는 측정값과 함께 올린다.
-MIN_PRECISION = 0.78
+MIN_PRECISION = 0.80
 MIN_RECALL = 0.98
 
 
