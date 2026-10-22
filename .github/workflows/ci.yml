@@ -2,9 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
 
 env:
   NODE_VERSION: "20"
@@ -68,6 +66,24 @@ jobs:
 
       - name: Run PBT tests
         run: pnpm test:pbt
+
+      - name: Build API
+        run: pnpm --filter @drug-food-checker/api build
+
+      - name: Smoke test - boot API and hit /api/health
+        env:
+          JWT_SECRET: ci-smoke-only-not-a-real-secret
+        run: |
+          pnpm --filter @drug-food-checker/api start:prod &
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:4000/api/health; then
+              echo "API booted"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "API failed to boot within 30s"
+          exit 1
 
   build:
     name: Build
