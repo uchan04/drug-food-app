@@ -97,7 +97,10 @@ model DrugIngredient {
 
 model Food {
   id        String   @id @default(uuid())
-  nameKo    String   @map("name_ko")
+  // 이름이 Food 의 사실상 식별자다. 적재 스크립트가 nameKo 로 찾고, seed 는
+  // 안정적인 id 로 넣는다. 제약이 없던 동안 같은 이름의 Food 가 두 행씩 생겨
+  // '알코올' 상호작용이 두 묶음으로 쪼개졌다 (마이그레이션 0005).
+  nameKo    String   @unique @map("name_ko")
   nameEn    String   @map("name_en")
   category  String
   nutrients String[]
