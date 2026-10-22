@@ -164,37 +164,86 @@ RISK_RULES = (
 )
 
 
-# 위험도를 판정할 때 보는 키워드 주변 범위.
-# 문장 전체를 보면 음식과 무관한 경고어가 위험도를 올린다. 실제로 메트포르민
-# 알코올이 "간질환 환자에게는 투여를 피해야 한다"의 "피해야" 때문에 warning
-# 으로 올라갔다. 경고어가 그 음식에 대한 것인지는 거리로 거른다.
+# 지시어가 그 음식에 대한 것인지 가리는 기준.
 #
-# 80 이었다. dev 를 쓸어 보니 100~140 이 평탄하고(정확도 0.946, 격상 재현율
-# 0.875) 160 부터 과대평가가 3 -> 7 로 튄다. 두 절벽에서 가장 먼 값을 쓴다.
-# 80 에서는 시프로플록사신 유제품의 "병용하지 않는 것이 바람직"이 키워드에서
-# 약 90자 떨어져 있어 caution 으로 떨어졌다.
-RISK_WINDOW = 120
-
-# 교차참조는 이 문장이 내리는 지시가 아니다. "(…투여하지 말 것 항 참조)" 를
+# 글자 거리(RISK_WINDOW)였다. 문장 전체를 보면 음식과 무관한 경고어가 위험도를
+# 올리기 때문에 키워드 주변 N 자만 봤다. 그런데 거리는 대리 지표다 — 서트랄린
+# 세인트존스워트 문장의 "금기해야 한다"가 키워드에서 **121자** 떨어져 있어서,
+# 창 120 에서는 금기가 주의로 떨어졌다. 한 글자가 배지를 바꿨다.
+#
+# 거리를 구조로 바꿨다. 창을 지운 뒤에도 라벨 235건에서 dev 1.000 이 유지되고,
+# 판정된 후보 272건 중 결과가 바뀌는 것은 그 서트랄린 1건뿐이다(올바른 방향).
+# 거리는 구조와 간격 규칙이 들어오면 더 이상 아무 일도 하지 않는다.
+# ---------------------------------------------------------------------------
+# 교차참조는 이 문장이 내리는 지시가 아니다. "(… 투여하지 말 것 항 참조)" 를
 # 금기로 읽으면 기전만 설명하는 문장에 금기 배지가 붙는다. 실제로 세인트존스워트
 # 세로토닌 문장과 자몽주스 문장이 그렇게 금기로 올라갔다.
-# 괄호를 먼저 지우므로 참조 문구가 창을 잡아먹지도 않는다.
 _XREF = re.compile(r"\([^()]*참조[^()]*\)")
+
+_OPEN, _CLOSE = "(（[", ")）]"
+
+# 불릿 구분자. 앞에 공백을 요구한다 — "1-2시간", "70 mg/2800 IU", "급ㆍ만성적"
+# 같은 표기를 불릿으로 읽으면 문장이 조각난다.
+_BULLET = re.compile(r"(?<=\s)[-–ㆍ·○●□▶]\s")
+
+# 복용 간격 지시. "투여 전 2시간 및 투여 후 4시간 이내에는 병용하지 않는 것이
+# 바람직하다"는 금지가 아니라 용법이다 (eval/RISK_RUBRIC.md 경계 사례 4).
+# 지시어 바로 앞만 본다. 시프로플록사신 제산제 문장 12행이 여기 걸린다.
+_INTERVAL = re.compile(r"[\d０-９]+\s*[~～∼]?\s*[\d０-９]*\s*(?:시간|분)\s*(?:이내|전|후|간격)")
+_INTERVAL_GAP = 20
+
+
+def _paren_paths(text):
+    """각 문자의 괄호 중첩 경로. 여는 괄호 위치의 튜플."""
+    paths, stack = [], []
+    for i, c in enumerate(text):
+        if c in _OPEN:
+            stack.append(i)
+            paths.append(tuple(stack))
+        elif c in _CLOSE and stack:
+            paths.append(tuple(stack))
+            stack.pop()
+        else:
+            paths.append(tuple(stack))
+    return paths
+
+
+def _applies(paths, text, kw, mk):
+    """지시어 구간 mk 가 키워드 구간 kw 에 적용되는가.
+
+    괄호는 종속 범위다. **바깥 지시어는 괄호 안으로 내려가지만, 괄호 안 지시어는
+    밖으로 나오지 못한다.** 허가사항의 환자군 나열이 이 형태다 —
+    "간 기능장애(… 이 약의 투여를 피해야 한다.), 폐경색, …, 과도한 알코올 섭취자"
+    에서 "피해야"는 간 기능장애의 것이고 알코올의 것이 아니다. 반대로
+    "유제품(예, 우유, 요구르트)와 … 병용하지 않는 것이 바람직하다"의 지시어는
+    괄호 안의 우유에도 적용된다. 방향이 있는 규칙이라 양쪽을 다 맞출 수 있다.
+
+    불릿 경계도 넘지 못한다. "- 공복 또는 영양실조 - 간장애 음주 및 알코올이
+    포함되어 있는 약물의 복용을 피해야 한다"에서 공복은 다른 항목이다.
+    """
+    ks, ke = kw
+    ms, me = mk
+    if paths[ms] != paths[ke - 1][: len(paths[ms])]:
+        return False
+    lo, hi = min(ke, me), max(ks, ms)
+    return not (lo < hi and _BULLET.search(text, lo, hi))
 
 
 def risk_level(sentence, keyword=None):
-    """경고 어투로 위험도를 매긴다. keyword 를 주면 그 주변만 본다."""
-    sentence = _XREF.sub(" ", sentence)
-    scope = sentence
-    if keyword:
-        hits = [m for m in re.finditer(re.escape(keyword), sentence)]
-        if hits:
-            scope = " ".join(
-                sentence[max(0, m.start() - RISK_WINDOW): m.end() + RISK_WINDOW] for m in hits
-            )
+    """경고 어투로 위험도를 매긴다. keyword 를 주면 그 키워드에 걸리는 것만 본다."""
+    text = _XREF.sub(" ", sentence)
+    paths = _paren_paths(text)
+    spans = ([(m.start(), m.end()) for m in re.finditer(re.escape(keyword), text)]
+             if keyword else [])
     for level, markers in RISK_RULES:
-        if any(m in scope for m in markers):
-            return level
+        for marker in markers:
+            for m in re.finditer(re.escape(marker), text):
+                if _INTERVAL.search(text, max(0, m.start() - _INTERVAL_GAP), m.start()):
+                    continue
+                if not spans:
+                    return level
+                if any(_applies(paths, text, k, (m.start(), m.end())) for k in spans):
+                    return level
     return "caution"
 
 
@@ -305,11 +354,30 @@ def demo():
     # 금기가 주의보다 먼저 걸려야 한다 (한 문장에 둘 다 있을 수 있다)
     assert risk_level("섭취를 피해야 하며 신장애 환자에게는 투여하지 말 것") == "contraindicated"
 
-    # 키워드를 주면 먼 경고어는 무시한다. 메트포르민에서 실제로 났던 오류다.
-    far = ("알코올 섭취자 " + "그 밖에 여러 환자군이 길게 나열되어 있고 " * 6
-           + "간질환 환자에게는 이 약의 투여를 피해야 한다")
-    assert risk_level(far) == "warning"              # 문장 전체를 보면 틀린다
-    assert risk_level(far, "알코올") == "caution"     # 키워드 주변만 보면 맞다
+    # 괄호 안 지시어는 그 항목의 것이다. 메트포르민 환자군 나열에서 실제로 났다.
+    group = ("10) 간 기능장애(간 질환의 증거가 있는 환자에게는 이 약의 투여를 피해야 한다.), "
+             "폐경색, 중증의 폐기능장애 환자, 과도한 알코올 섭취자, 탈수증 환자")
+    assert risk_level(group) == "warning"              # 문장 전체를 보면 틀린다
+    assert risk_level(group, "알코올") == "caution"     # 괄호 소속을 보면 맞다
+    # 반대 방향: 괄호 밖 지시어는 괄호 안 키워드에 적용된다 (괄호는 종속 범위다).
+    assert risk_level("유제품 또는 무기질 강화음료(예, 우유, 요구르트)와 이 약을 "
+                      "병용하지 않는 것이 바람직하다", "우유") == "warning"
+
+    # 불릿 경계를 넘지 않는다. 항목이 다르면 지시어가 적용되지 않는다.
+    bullet = "- 공복 또는 영양실조 - 간장애 음주 및 알코올이 포함되어 있는 약물의 복용을 피해야 한다."
+    assert risk_level(bullet, "알코올") == "warning"
+    assert risk_level(bullet, "공복") == "caution"
+
+    # 복용 간격 지시는 금지가 아니라 용법이다 (RISK_RUBRIC.md 경계 사례 4).
+    assert risk_level("칼슘 함유 제제와의 병용에 의해 흡수가 저하되므로 이 약 투여 전 1 ～ 2시간 "
+                      "및 투여 후 4시간 이내에는 병용하지 않는 것이 바람직하다", "칼슘") == "caution"
+    # 같은 문구인데 간격 지시가 없으면 경고다. 둘을 가르는 것이 간격 표현이다.
+    assert risk_level("칼슘 함유 제제와 이 약은 병용하지 않는 것이 바람직하다", "칼슘") == "warning"
+
+    # 글자 거리로 거르지 않는다. 거리가 멀어도 구조가 같으면 적용된다.
+    # (서트랄린 세인트존스워트의 "금기해야 한다"가 121자 떨어져 있었다.)
+    assert risk_level("세인트존스워트" + "그 밖의 약물이 길게 나열되어 있고 " * 8
+                      + "병용투여는 금기해야 한다", "세인트존스워트") == "contraindicated"
     # 가까이 있는 경고어는 그대로 적용된다
     assert risk_level("자몽주스를 섭취하지 않도록 한다", "자몽주스") == "warning"
 

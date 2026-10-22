@@ -885,7 +885,7 @@
     {
       "ingredient": "서트랄린",
       "food": "세인트존스워트",
-      "riskLevel": "caution",
+      "riskLevel": "contraindicated",
       "keyword": "세인트존스워트",
       "reasonKo": "4) 다른 세로토닌성 약물 암페타민류, 트립탄 계열 약물들, 삼환계 항우울제, 펜타닐, 리튬, 트라마돌, 부스피론, 트립토판, 펜플루라민, 5-HT 작용제 또는 생약제제인 세인트존스워트(St. John's Wort (Hypericum perforatum))와 같이 세로토닌성 신경전달의 영향을 증강시키는 약물들과 설트랄린을 병용투여하는 것은 주의해야 하고, 약력학적 상호작용의 가능성이 있는 경우에는 금기해야 한다.",
       "source": "mfds:permit:200003086",
