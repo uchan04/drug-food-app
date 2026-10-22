@@ -123,13 +123,3 @@ ALTER TABLE "medicine_box_items" ADD CONSTRAINT "medicine_box_items_user_id_fkey
 -- AddForeignKey
 ALTER TABLE "medicine_box_items" ADD CONSTRAINT "medicine_box_items_drug_id_fkey" FOREIGN KEY ("drug_id") REFERENCES "drugs"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
-┌─────────────────────────────────────────────────────────┐
-│  Update available 5.9.0 -> 7.9.1                        │
-│                                                         │
-│  This is a major update - please follow the guide at    │
-│  https://pris.ly/d/major-version-upgrade                │
-│                                                         │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest                          │
-└─────────────────────────────────────────────────────────┘
