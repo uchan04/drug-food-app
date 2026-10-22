@@ -32,6 +32,79 @@ INGREDIENT_ALIAS = {
     "와파린": ["와파린", "와파린 나트륨"],
 }
 
+# ---------------------------------------------------------------------------
+# 복합제 성분 귀속
+#
+# item_name 부분일치로 조회하면 복합제도 걸린다 (카듀엣 = 암로디핀 + 아토르바스타틴).
+# 복합제 허가사항은 두 성분의 주의사항이 한 문서에 섞여 있는데, 문서를 통째로
+# 조회어에 귀속시키면 다른 성분의 문장이 섞여 들어온다. 실제 1순위 근거였다.
+#   아토르바스타틴 x 자몽   "따라서, 암로디핀은 자몽이나 자몽주스와 병용시..."
+#   미노사이클린  x 알코올  "경구 메트로니다졸을 알코올과 병용시 antabuse 효과..."
+#
+# 문서를 버리지는 않는다. 알렌드로네이트는 국내 허가 품목이 복합제 1건뿐이라서
+# (알렌드론산 + 콜레칼시페롤) 문서를 버리면 제안 7건이 전부 사라지고, 그중에는
+# 임상적으로 가장 중요한 "공복에 물과 함께 복용"이 들어 있다. 문장 단위로 가른다.
+# ---------------------------------------------------------------------------
+# MAIN_ITEM_INGR 는 '[M095744]로수바스타틴칼슘|[M...]...' 형태다.
+_INGR_CODE = re.compile(r"^\[[A-Z0-9]+\]")
+# 대한민국약전의 수식어. 본문은 이걸 떼고 쓴다 (묽은클라불란산칼륨 -> 클라불란산).
+_INGR_MODIFIER = re.compile(r"^(묽은|농축|건조|무수)")
+
+# main_ingr 의 표준명이 조회어와 다른 성분. 조회어가 main_ingr 에 없으면 어느
+# 쪽이 '이 약'인지 알 수 없어서 co_ingredients 가 멈춘다.
+MAIN_INGR_ALIAS = {"알렌드로네이트": "알렌드론산"}
+
+# 문장에서 성분을 알아보는 데 쓰는 이름 길이.
+#
+# main_ingr 은 염·수화물이 붙은 표준명('메트로니다졸벤조산염', '암로디핀베실산염')
+# 이지만 문장은 기본명('메트로니다졸', '암로디핀')으로 쓴다. 접미어 사전
+# (염산염/황산염/수화물/...)을 적는 대신 앞 네 글자만 본다. 접미어는 뒤에만
+# 붙으므로 접두어는 그대로 남고, 사전처럼 새 복합제마다 늘릴 필요가 없다.
+#
+# 문서 전체에서 가장 긴 접두어를 찾는 방법을 먼저 썼는데 틀렸다. 허가사항
+# 머리글에는 표준명 전체가 적혀 있어서 '메트로니다졸벤조산염'이 잡히고, 문장의
+# '메트로니다졸'과 안 맞아 미노사이클린 x 알코올이 그대로 통과했다.
+#
+# ponytail: 네 글자가 우연히 겹치면 근거 문장 하나를 잘못 버린다. 전사된 INN
+# 네 음절이 겹칠 일은 드물고, 이 코퍼스의 성분 5종에서는 겹치지 않는다.
+_INGR_PREFIX = 4
+
+
+def mentions(sentence, name):
+    """문장이 그 성분을 이름으로 부르는가."""
+    return _INGR_MODIFIER.sub("", name)[:_INGR_PREFIX] in sentence
+
+
+def co_ingredients(doc):
+    """복합제 문서에서 조회어가 아닌 성분의 표준명. 단일제면 빈 리스트."""
+    names = []
+    for part in (doc.get("main_ingr") or "").split("|"):
+        part = _INGR_CODE.sub("", part).strip()
+        # 같은 성분이 함량별로 여러 번 적힌다 (세티리진염산염 x 6). 복합제가 아니다.
+        if part and part not in names:
+            names.append(part)
+    if len(names) < 2:
+        return []
+    own = MAIN_INGR_ALIAS.get(doc["query_ingredient"], doc["query_ingredient"])
+    others = [n for n in names if not n.startswith(own)]
+    if len(others) == len(names):
+        raise SystemExit(
+            f"복합제 {doc['item_seq']}({doc['item_name']}) 의 성분 {names} 에 "
+            f"조회어 '{own}' 가 없다. MAIN_INGR_ALIAS 에 표준명을 추가하세요."
+        )
+    return others
+
+
+def attributed(sentence, own, cos):
+    """복합제 문장이 조회 성분에 대한 것인가.
+
+    다른 성분을 이름으로 부르면서 조회 성분은 부르지 않는 문장만 버린다.
+    둘 다 부르지 않는 문장("이 약은 물과 함께 공복에 복용한다")은 복합제
+    전체에 대한 서술이라 그대로 둔다 — 알렌드로네이트의 공복 복용이 그 형태다.
+    """
+    return mentions(sentence, own) or not any(mentions(sentence, c) for c in cos)
+
+
 # extract 의 정규화된 음식명 -> seed.ts 의 Food.nameKo
 # 왼쪽에만 있는 것은 load 단계에서 Food 행을 새로 만든다.
 # 표제어가 가리키는 Food 를 하나로 묶는다. 쪼개 두면 같은 상호작용이 여러
@@ -159,9 +232,14 @@ def normalize(docs):
         # 취하·유효기간만료 품목은 근거로 쓰지 않는다.
         if d.get("cancel") and d["cancel"] != "정상":
             continue
+        cos = co_ingredients(d)
+        own = MAIN_INGR_ALIAS.get(d["query_ingredient"], d["query_ingredient"])
         for field in ("nb", "ud"):
             for c in extract.candidates(d[field]):
                 if not extract.judge(c["sentence"], c["keyword"]):
+                    continue
+                # 복합제면 다른 성분을 설명하는 문장을 버린다.
+                if cos and not attributed(c["sentence"], own, cos):
                     continue
                 for ingredient in INGREDIENT_ALIAS.get(
                     d["query_ingredient"], [d["query_ingredient"]]
@@ -233,6 +311,41 @@ def demo():
     assert best([("9) 알코올을 복용한 사람", "알코올"),
                  ("매일 세잔 이상 정기적으로 술을 마시는 사람은 의사와 상의해야 한다", "술")])[0] == \
         "매일 세잔 이상 정기적으로 술을 마시는 사람은 의사와 상의해야 한다"
+
+    # 복합제: 다른 성분을 부르는 문장은 그 성분 쪽이다. 카듀엣에서 실제로 났던 오류다.
+    카듀엣 = {"query_ingredient": "아토르바스타틴", "item_seq": "4", "item_name": "카듀엣정",
+            "cancel": "정상",
+            "main_ingr": "[M1]아토르바스타틴칼슘삼수화물|[M2]암로디핀베실산염",
+            "nb": "따라서, 암로디핀은 자몽주스와 병용시 생체이용률이 증가한다. "
+                  "자몽주스는 아토르바스타틴의 혈중 농도를 증가시킬 수 있다.", "ud": ""}
+    assert co_ingredients(카듀엣) == ["암로디핀베실산염"]
+    kadu = normalize([카듀엣])
+    assert len(kadu) == 1 and len(kadu[0]["evidence"]) == 1, kadu
+    assert kadu[0]["reasonKo"].startswith("자몽주스는 아토르바스타틴"), kadu[0]["reasonKo"]
+
+    # 표준명은 염·수화물이 붙어 있고 문장은 기본명을 쓴다. 앞 네 글자로 맞춘다.
+    assert mentions("경구 메트로니다졸을 알코올과 병용시", "메트로니다졸벤조산염")
+    assert mentions("클라불란산과 함께", "묽은클라불란산칼륨")  # 약전 수식어를 뗀다
+    assert not mentions("이 약은 물과 함께 복용한다", "농축콜레칼시페롤분말")
+    # 둘 다 부르지 않는 문장은 복합제 전체 서술이라 남긴다 (알렌드로네이트의 공복 복용).
+    assert attributed("이 약은 물과 함께 공복에 복용한다", "알렌드론산", ["농축콜레칼시페롤분말"])
+
+    # 같은 성분이 함량별로 여러 번 적힌 것은 복합제가 아니다 (세티리진).
+    assert co_ingredients({"query_ingredient": "세티리진", "item_seq": "5", "item_name": "",
+                           "main_ingr": "[M1]세티리진염산염|[M1]세티리진염산염",
+                           "nb": "", "ud": ""}) == []
+    # 조회어가 main_ingr 에 없으면 어느 쪽이 '이 약'인지 모른다. 조용히 넘기면 안 된다.
+    try:
+        co_ingredients({"query_ingredient": "알렌드로네이트수화물", "item_seq": "6",
+                        "item_name": "대웅알렌드로네이트디정",
+                        # 실제 표준명은 알렌드론산이고 MAIN_INGR_ALIAS 가 이어준다.
+                        # 별칭이 없는 성분을 흉내 내려고 조회어만 바꿨다.
+                        "main_ingr": "[M1]알렌드론산나트륨수화물|[M2]농축콜레칼시페롤분말",
+                        "nb": "", "ud": ""})
+    except SystemExit as e:
+        assert "MAIN_INGR_ALIAS" in str(e), e
+    else:
+        raise AssertionError("복합제에 조회어가 없는데 멈추지 않았다")
 
     # 취하 품목은 근거에서 빠진다
     doc = {"query_ingredient": "심바스타틴", "item_seq": "1", "cancel": "취하",
