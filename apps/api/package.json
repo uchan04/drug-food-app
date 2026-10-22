@@ -17,7 +17,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
-    "load:interactions": "node -r ts-node/register/transpile-only prisma/load-interactions.ts"
+    "load:interactions": "node -r ts-node/register/transpile-only prisma/load-interactions.ts",
+    "eval:search": "node -r ts-node/register/transpile-only tools/search-eval.ts"
   },
   "dependencies": {
     "@nestjs/common": "10.3.0",

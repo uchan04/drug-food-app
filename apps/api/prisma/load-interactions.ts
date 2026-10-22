@@ -10,24 +10,12 @@
  *
  *   pnpm --filter api load:interactions
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { PrismaClient, RiskLevel } from '@prisma/client';
 
-// .env 는 Prisma CLI 가 읽어 준다. 이 스크립트는 node 로 직접 돌아가므로
-// 아무도 읽지 않는다 (seed.ts 를 직접 돌렸을 때 P1012 가 났던 이유다).
-// dotenv 를 추가하는 대신 이미 설정된 값은 건드리지 않고 빈 것만 채운다.
-// CI 처럼 환경변수가 먼저 설정된 곳에서는 이 함수가 아무 일도 하지 않는다.
-function loadEnvFile(path: string) {
-  if (!existsSync(path)) return;
-  for (const line of readFileSync(path, 'utf-8').split('\n')) {
-    const m = /^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*)$/.exec(line);
-    if (m && process.env[m[1]] === undefined) {
-      process.env[m[1]] = m[2].trim().replace(/^["']|["']$/g, '');
-    }
-  }
-}
+import { loadEnvFile } from '../tools/load-env';
 
 loadEnvFile(join(__dirname, '..', '.env'));
 
