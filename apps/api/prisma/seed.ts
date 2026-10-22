@@ -809,10 +809,6 @@ const INTERACTIONS = [
 async function main() {
   console.info('🌱 Seeding database...');
 
-  // Enable pg_trgm extension
-  await prisma.$executeRawUnsafe(`CREATE EXTENSION IF NOT EXISTS pg_trgm;`);
-  console.info('✅ pg_trgm extension enabled');
-
   // Seed Foods
   for (const food of FOODS) {
     await prisma.food.upsert({
@@ -873,18 +869,6 @@ async function main() {
     });
   }
   console.info(`✅ Seeded ${INTERACTIONS.length} interactions`);
-
-  // Create trigram indexes (idempotent - IF NOT EXISTS)
-  await prisma.$executeRawUnsafe(`
-    CREATE INDEX IF NOT EXISTS idx_drugs_name_ko_trgm ON drugs USING GIN (name_ko gin_trgm_ops);
-  `);
-  await prisma.$executeRawUnsafe(`
-    CREATE INDEX IF NOT EXISTS idx_drugs_name_en_trgm ON drugs USING GIN (name_en gin_trgm_ops);
-  `);
-  await prisma.$executeRawUnsafe(`
-    CREATE INDEX IF NOT EXISTS idx_ingredients_name_ko_trgm ON drug_ingredients USING GIN (name_ko gin_trgm_ops);
-  `);
-  console.info('✅ Trigram indexes created');
 
   console.info('🎉 Seed complete!');
 }
