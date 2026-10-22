@@ -54,7 +54,12 @@ RAW = fetch.RAW_ROOT / "permit-eval"
 DOCS = Path(__file__).parent / "data" / "docs.jsonl"
 # ponytail: 성분당 품목 수. 호출은 성분당 1회로 그대로니 올려도 할당량은 같다.
 # 올리면 제네릭 문구 다양성이 늘지만 라벨링할 새 문장도 늘어난다.
-ROWS_PER_INGREDIENT = 20
+#
+# 100 이 한 페이지 상한이다(numOfRows). 더 받으려면 페이지를 늘려야 하는데,
+# 조회 가능한 품목이 3,993건이고 받은 것은 378건이었다. 성분당 100 이면
+# 약 1,900건으로 5배가 되고 호출은 24회로 그대로다. 그 이상은 제네릭 재판본이
+# 늘 뿐이어서(round 1 -> 2 에서 문서 6배에 새 라벨은 0.78건/문서) 여기서 멈춘다.
+ROWS_PER_INGREDIENT = 100
 
 
 def done_reason(name, term):
