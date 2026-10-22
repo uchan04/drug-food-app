@@ -4,18 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { interactionApi } from '@/lib/api-client';
 import { InteractionReport } from '@/components/analysis/interaction-report';
+import type { Interaction } from '@/components/analysis/interaction-report';
 import { useAuth } from '@/hooks/use-auth';
 
+// 모양을 여기에 또 적어 두면 어긋난다. 실제로 출처 필드를 추가했을 때
+// 이 복사본만 빠져서 타입 오류가 났다. 리포트가 받는 타입을 그대로 쓴다.
 interface AnalysisResult {
-  interactions: Array<{
-    id: string;
-    food: { nameKo: string; nameEn: string; category: string };
-    riskLevel: 'caution' | 'warning' | 'contraindicated';
-    reason: string;
-    sideEffects: string;
-    timeGapHours: number | null;
-    drugName?: string;
-  }>;
+  interactions: Interaction[];
   summary: { caution: number; warning: number; contraindicated: number; total: number };
 }
 

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { drugApi, medicineBoxApi } from '@/lib/api-client';
 import { useAuth } from '@/hooks/use-auth';
+import { DrugInteractions } from './drug-interactions';
 
 interface SearchResultsProps {
   query: string;
@@ -13,6 +14,8 @@ export function SearchResults({ query }: SearchResultsProps) {
   const { token } = useAuth();
   const queryClient = useQueryClient();
   const [addedDrugs, setAddedDrugs] = useState<Set<string>>(new Set());
+  // 펼친 약. 로그인 없이도 상호작용과 출처를 볼 수 있어야 한다.
+  const [openDrug, setOpenDrug] = useState<string | null>(null);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['drugSearch', query],
@@ -49,11 +52,9 @@ export function SearchResults({ query }: SearchResultsProps) {
 
       <div className="space-y-0 border border-white/10 rounded-2xl overflow-hidden">
         {results.map((drug, idx) => (
+          <div key={drug.id} className={idx > 0 ? 'border-t border-white/5' : ''}>
           <div
-            key={drug.id}
-            className={`flex items-center justify-between px-6 py-5 hover:bg-white/[0.03] transition-colors ${
-              idx > 0 ? 'border-t border-white/5' : ''
-            }`}
+            className="flex items-center justify-between px-6 py-5 hover:bg-white/[0.03] transition-colors"
             data-testid={`search-result-${drug.id}`}
           >
             <div className="flex items-baseline gap-4">
@@ -65,9 +66,15 @@ export function SearchResults({ query }: SearchResultsProps) {
             </div>
             <div className="flex items-center gap-3">
               {drug.hasInteractions && (
-                <span className="text-[11px] px-2.5 py-1 bg-orange-900/30 text-orange-400 rounded-full border border-orange-700/30">
-                  상호작용
-                </span>
+                <button
+                  type="button"
+                  onClick={() => setOpenDrug(openDrug === drug.id ? null : drug.id)}
+                  className="text-[11px] px-2.5 py-1 bg-orange-900/30 text-orange-400 rounded-full border border-orange-700/30 hover:bg-orange-900/50 transition-colors"
+                  data-testid={`toggle-interactions-${drug.id}`}
+                  aria-expanded={openDrug === drug.id}
+                >
+                  상호작용 {openDrug === drug.id ? '닫기' : '보기'}
+                </button>
               )}
               <button
                 className={`text-[12px] font-semibold px-4 py-2 rounded-full border transition-all ${
@@ -82,6 +89,8 @@ export function SearchResults({ query }: SearchResultsProps) {
                 {addedDrugs.has(drug.id) ? 'SAVED' : 'SAVE'}
               </button>
             </div>
+          </div>
+          {openDrug === drug.id && <DrugInteractions drugId={drug.id} />}
           </div>
         ))}
       </div>
