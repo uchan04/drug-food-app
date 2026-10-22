@@ -130,7 +130,7 @@ export class DrugService {
       LIMIT $2
       `,
       sanitizedQuery,
-      Math.ceil(limit / 2),
+      limit,
     );
 
     // Ingredient name matches
@@ -145,15 +145,29 @@ export class DrugService {
       LIMIT $2
       `,
       sanitizedQuery,
-      Math.ceil(limit / 2),
+      limit,
     );
 
-    const combined = [
-      ...drugs.map((d) => ({ id: d.id, name: d.name, type: 'product' as const })),
-      ...ingredients.map((i) => ({ id: i.id, name: i.name, type: 'ingredient' as const })),
-    ].slice(0, limit);
-
-    return combined;
+    // 두 결과를 유사도로 합친다. 그냥 이어 붙이면 약품 결과가 항상 먼저
+    // 와서, 성분명을 정확히 입력해도 덜 비슷한 약품명이 1위가 된다
+    // (아토르바스타틴 검색에 심바스타틴이 먼저 나왔다).
+    // 양쪽에서 ceil(limit/2) 씩 받던 것도 limit 씩으로 바꿨다. 한쪽이 더 좋은
+    // 후보를 다 갖고 있어도 절반만 들어오던 문제가 있었다.
+    const seen = new Set<string>();
+    return [
+      ...drugs.map((d) => ({ ...d, type: 'product' as const })),
+      ...ingredients.map((i) => ({ ...i, type: 'ingredient' as const })),
+    ]
+      // 이름이 같으면 동점 처리가 흔들리므로 이름으로 전순서를 만든다.
+      .sort((a, b) => b.similarity - a.similarity || a.name.localeCompare(b.name))
+      // 제품명과 성분명이 같은 약은 두 번 걸린다 (심바스타틴). 중복 제안이다.
+      .filter((x) => {
+        if (seen.has(x.name)) return false;
+        seen.add(x.name);
+        return true;
+      })
+      .slice(0, limit)
+      .map(({ id, name, type }) => ({ id, name, type }));
   }
 
   async getById(id: string, _lang: 'ko' | 'en') {
