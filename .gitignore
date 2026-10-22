@@ -42,3 +42,6 @@ pnpm-debug.log*
 
 # AI-DLC generated docs that are local workflow artifacts
 aidlc-docs/
+
+# 빌드 산출물. tsc 를 돌릴 때마다 변경으로 떠서 노이즈가 된다.
+apps/web/tsconfig.tsbuildinfo
