@@ -17,10 +17,17 @@ round 열은 표본 수집 회차다. round 1 은 성분당 3품목(63문서), r
 상태로 라벨했으므로 **처음 보는 제조사 문구에서의 성능**을 나타낸다.
 성분 그룹은 양쪽에 공통이라 성분 홀드아웃이 아니라 문구 홀드아웃이다.
 
-    python3 score.py          # dev/test 지표
-    python3 score.py --fp     # 규칙이 놓친 오탐 출력 (dev 만)
-    python3 score.py --fn     # 규칙이 잘못 막은 양성 출력 (dev 만)
-    python3 score.py --check  # 하한 미달이면 0 이 아닌 코드로 종료 (CI)
+risk 열은 위험도 라벨이다. 양성 행에만 있다. 재는 것은 임상적 진실이 아니라
+**그 문장이 그 음식에 대해 지시하는 행동 수준**이다 — 사용자에게 이 문장이 그대로
+보이고 배지가 그 위에 붙기 때문이다. 판정 기준은 eval/RISK_RUBRIC.md 에 있고,
+문장을 읽기 전에 고정했다.
+
+    python3 score.py           # dev/test 지표
+    python3 score.py --fp      # 규칙이 놓친 오탐 출력 (dev 만)
+    python3 score.py --fn      # 규칙이 잘못 막은 양성 출력 (dev 만)
+    python3 score.py --risk    # 위험도 규칙 측정
+    python3 score.py --risk-e  # 위험도 오류 출력 (dev 만)
+    python3 score.py --check   # 하한 미달이면 0 이 아닌 코드로 종료 (CI)
 """
 
 import csv
@@ -29,6 +36,7 @@ import sys
 from pathlib import Path
 
 import extract
+import normalize
 
 LABELS = Path(__file__).parent / "eval" / "labels.tsv"
 
@@ -43,6 +51,7 @@ def load():
         rows = list(csv.DictReader(f, delimiter="\t"))
     for r in rows:
         r["y"] = int(r["label"])
+        r["risk"] = r.get("risk") or ""
         r["split"] = split_of(r["ingredient"])
     return rows
 
@@ -67,6 +76,67 @@ def prf(rows, predict):
     rc = tp / (tp + fn) if tp + fn else 0.0
     f1 = 2 * p * rc / (p + rc) if p + rc else 0.0
     return {"tp": tp, "fp": fp, "fn": fn, "precision": p, "recall": rc, "f1": f1}
+
+
+# 위험도는 순서가 있는 세 등급이다. 정확도 하나로는 "어느 방향으로 틀리는지"가
+# 사라진다. 과대평가(금기가 아닌데 금기)와 과소평가(금기인데 주의)는 성질이 다르다.
+RISK_ORDER = {"caution": 0, "warning": 1, "contraindicated": 2}
+
+
+def risk_rows(rows):
+    """위험도 라벨이 있는 행. 양성에만 라벨했다 — 음성 문장의 위험도는 뜻이 없다."""
+    return [r for r in rows if r["y"] == 1 and r["risk"]]
+
+
+def risk_metrics(rows):
+    got = [(normalize.risk_level(r["sentence"], r["keyword"]), r["risk"]) for r in rows]
+    over = sum(1 for p, y in got if RISK_ORDER[p] > RISK_ORDER[y])
+    under = sum(1 for p, y in got if RISK_ORDER[p] < RISK_ORDER[y])
+    hit = len(got) - over - under
+    m = {"n": len(got), "acc": hit / len(got) if got else 0.0,
+         "over": over, "under": under}
+    # 격상 정밀도/재현율: caution 위로 올린 것이 맞았는가, 올려야 할 것을 올렸는가.
+    # 배지가 사용자 행동을 바꾸는 지점이 여기다.
+    tp = sum(1 for p, y in got if p != "caution" and y != "caution")
+    fp = sum(1 for p, y in got if p != "caution" and y == "caution")
+    fn = sum(1 for p, y in got if p == "caution" and y != "caution")
+    m["esc_p"] = tp / (tp + fp) if tp + fp else 0.0
+    m["esc_r"] = tp / (tp + fn) if tp + fn else 0.0
+    m["esc_tp"], m["esc_fp"], m["esc_fn"] = tp, fp, fn
+    return m
+
+
+def risk_report(rows):
+    sub = risk_rows(rows)
+    print(f"{'split':7s} {'n':>4s} {'정확도':>7s} {'과대':>4s} {'과소':>4s}  "
+          f"{'격상정밀도':>9s} {'격상재현율':>9s}  TP/FP/FN")
+    for name, keep in GROUPS:
+        m = risk_metrics([r for r in sub if keep(r)])
+        if not m["n"]:
+            continue
+        print(f"{name:7s} {m['n']:4d} {m['acc']:7.3f} {m['over']:4d} {m['under']:4d}  "
+              f"{m['esc_p']:9.3f} {m['esc_r']:9.3f}  "
+              f"{m['esc_tp']}/{m['esc_fp']}/{m['esc_fn']}")
+
+    print("\n혼동행렬 (행=라벨, 열=예측)")
+    order = ["contraindicated", "warning", "caution"]
+    print(f"{'':16s}" + "".join(f"{c[:7]:>9s}" for c in order) + f"{'합':>6s}")
+    for y in order:
+        r_ = [sum(1 for x in sub if x["risk"] == y
+                  and normalize.risk_level(x["sentence"], x["keyword"]) == p) for p in order]
+        print(f"{y:16s}" + "".join(f"{n:9d}" for n in r_) + f"{sum(r_):6d}")
+
+
+def risk_errors(rows):
+    """dev 만 본다. test 오류를 보고 규칙을 고치면 test 숫자가 거짓이 된다."""
+    bad = [(normalize.risk_level(r["sentence"], r["keyword"]), r)
+           for r in risk_rows(rows) if r["split"] == "dev"]
+    bad = [(p, r) for p, r in bad if p != r["risk"]]
+    print(f"dev 위험도 오류 {len(bad)}건")
+    for p, r in sorted(bad, key=lambda x: (x[1]["risk"], x[0])):
+        d = "과대" if RISK_ORDER[p] > RISK_ORDER[r["risk"]] else "과소"
+        print(f"  {d} 라벨={r['risk']:16s} 예측={p:16s} [{r['keyword']}]")
+        print(f"       {r['sentence'][:160]}")
 
 
 BASELINE = lambda r: True
@@ -110,6 +180,7 @@ def check(rows):
         bad.append(f"정밀도 {m['precision']:.3f} < {MIN_PRECISION}")
     if m["recall"] < MIN_RECALL:
         bad.append(f"재현율 {m['recall']:.3f} < {MIN_RECALL}")
+
     if bad:
         sys.exit("추출 규칙 퇴행: " + ", ".join(bad))
     print("ok score")
@@ -123,5 +194,9 @@ if __name__ == "__main__":
         errors(rows, "fp")
     elif "--fn" in sys.argv:
         errors(rows, "fn")
+    elif "--risk" in sys.argv:
+        risk_report(rows)
+    elif "--risk-e" in sys.argv:
+        risk_errors(rows)
     else:
         report(rows)

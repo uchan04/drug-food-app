@@ -35,9 +35,11 @@ def rows():
 
 
 if __name__ == "__main__":
-    out = ["label\tkeyword\tfood\tingredient\tsentence"]
+    # labels.tsv 와 같은 열 순서로 낸다. round 는 수집 회차, risk 는 위험도
+    # 라벨이고 둘 다 사람이 채운다 (risk 는 label=1 행에만).
+    out = ["label\tround\trisk\tkeyword\tfood\tingredient\tsentence"]
     for r in rows():
-        out.append("\t".join(["", r["keyword"], r["food"], r["ingredient"],
+        out.append("\t".join(["", "", "", r["keyword"], r["food"], r["ingredient"],
                               r["sentence"].replace("\t", " ")]))
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
     print(f"{len(out)-1} rows -> {OUT}")
