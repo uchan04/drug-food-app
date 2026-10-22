@@ -7,6 +7,9 @@
 
 성분당 호출 1회. 26회면 개발계정 한도(1,000/일)에 거의 영향이 없다.
 
+제네릭마다 주의사항 문구가 달라서 품목 수를 늘리면 새 문구가 나온다.
+성분당 3품목으로는 출처를 붙이지 못한 상호작용이 많았다.
+
     python3 sample_docs.py          # 수집 + docs.jsonl 생성
     python3 sample_docs.py --build  # 수집 생략, 기존 원본으로 docs.jsonl 만 다시 생성
 """
@@ -33,25 +36,78 @@ INGREDIENTS = [
     "레보티록신", "에소메프라졸", "알렌드로네이트", "세티리진",
 ]
 
+# 식약처 표기가 seed.ts 와 다른 성분. 조회어만 바꾸고 디렉토리는 seed 이름을
+# 유지한다. query_ingredient 가 seed 이름이어야 적재 때 성분이 매칭된다.
+SEARCH_NAME = {
+    # 식약처 표준명은 '설트랄린'이다. '서트랄린'으로 조회하면 0건, '설트랄린'은 21건.
+    "서트랄린": "설트랄린",
+}
+
+# 국내 허가 품목이 없어서 식약처로는 출처를 붙일 수 없는 성분.
+# 모클로베마이드: 조회어 4개(모클로베마이드/모클로베미드/오로릭스/아우로릭스) 모두 0건.
+#                국내 시장에서 철수했다. seed 의 5행은 손으로 적은 상태로 남는다.
+NO_MFDS = {"모클로베마이드"}
+
+ENDPOINT = "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08"
+
 RAW = fetch.RAW_ROOT / "permit-eval"
 DOCS = Path(__file__).parent / "data" / "docs.jsonl"
-ROWS_PER_INGREDIENT = 3
+# ponytail: 성분당 품목 수. 호출은 성분당 1회로 그대로니 올려도 할당량은 같다.
+# 올리면 제네릭 문구 다양성이 늘지만 라벨링할 새 문장도 늘어난다.
+ROWS_PER_INGREDIENT = 20
+
+
+def done_reason(name, term):
+    """건너뛸 이유를 돌려준다. 다시 받아야 하면 None.
+
+    받은 것을 또 호출하면 일일 할당량(1,000회)을 그냥 태운다. 첫 실행이 25개 중
+    18개에서 타임아웃으로 죽어서 재시도가 필요했다.
+
+    그런데 "파일이 있으면 건너뛰기" 로는 ROWS_PER_INGREDIENT 를 올려도 아무것도
+    다시 받지 않는다. 받은 항목 수, 조회 가능한 총 건수, 조회어를 함께 본다.
+    """
+    d = RAW / name
+    if not d.exists():
+        return None
+
+    terms, total = set(), None
+    for m in d.glob("*/manifest.json"):
+        j = json.loads(m.read_text())
+        terms.add(j["params"].get("item_name"))
+        if j.get("total_count") is not None:
+            total = j["total_count"] if total is None else max(total, j["total_count"])
+
+    if term not in terms:
+        return None  # 조회어를 바꿨다 (서트랄린 -> 설트랄린). 다시 받는다
+    if total is None:
+        return None  # 지난 실행이 응답을 받기 전에 죽었다
+
+    seqs = set()
+    for p in d.glob("*/page_*.json"):
+        for item in json.loads(p.read_text())["body"].get("items", []):
+            seqs.add(item["ITEM_SEQ"])
+    # 품목이 요청 수보다 적으면 다시 호출해도 더 나오지 않는다 (리시노프릴 1건).
+    if len(seqs) >= min(ROWS_PER_INGREDIENT, total):
+        return f"{len(seqs)}/{total}건 이미 받음"
+    return None
 
 
 def collect():
-    """성분별로 1회씩 호출한다. 성분마다 dataset 이름을 달리해 run 디렉토리를 분리한다.
-
-    이미 받은 성분은 건너뛴다. 재시도할 때 받은 것을 또 호출하면 일일 할당량을
-    그냥 태운다 (첫 실행이 25개 중 18개에서 타임아웃으로 죽었다).
-    """
+    """성분별로 1회씩 호출한다. 성분마다 dataset 이름을 달리해 run 디렉토리를 분리한다."""
     for name in INGREDIENTS:
-        if any((RAW / name).glob("*/page_*.json")):
+        if name in NO_MFDS:
+            print(f"  skip {name}: 국내 허가 품목 없음")
+            continue
+        term = SEARCH_NAME.get(name, name)
+        reason = done_reason(name, term)
+        if reason:
+            print(f"  skip {name}: {reason}")
             continue
         try:
             fetch.fetch(
                 f"permit-eval/{name}",
-                "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",
-                {"item_name": name},
+                ENDPOINT,
+                {"item_name": term},
                 rows=ROWS_PER_INGREDIENT,
                 pages=1,
             )
