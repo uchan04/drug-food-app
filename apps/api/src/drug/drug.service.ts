@@ -35,7 +35,7 @@ export class DrugService {
       }>
     >(
       `
-      SELECT DISTINCT ON (d.id)
+      SELECT
         d.id,
         d.name_ko,
         d.name_en,
@@ -59,7 +59,15 @@ export class DrugService {
           SELECT 1 FROM drug_ingredients di
           WHERE di.drug_id = d.id AND similarity(di.${nameField}, $1) > 0.1
         )
-      ORDER BY d.id, similarity DESC
+      -- DISTINCT ON (d.id) 가 있었다. FROM 절에 JOIN 이 없고 성분 매칭은 상관
+      -- 스칼라 서브쿼리라서 약마다 행이 하나뿐이고, 지울 중복이 애초에 없었다.
+      -- 그런데 Postgres 는 DISTINCT ON 식을 ORDER BY 맨 앞에 요구하므로
+      -- ORDER BY d.id 가 강제되어 관련도 정렬이 깨져 있었다. 결과가 유사도순이
+      -- 아니라 약품 ID 순이었다 (아세트아미노펜 검색에 아스피린 d008 이
+      -- 타이레놀 d009 보다 먼저 나왔다). 측정값: R@1 0.782 -> 1.000.
+      -- d.id 는 동점 처리용이다. 전순서가 없으면 OFFSET 페이징에서 행이
+      -- 중복되거나 누락된다.
+      ORDER BY similarity DESC, d.id
       LIMIT $2 OFFSET $3
       `,
       sanitizedQuery,
