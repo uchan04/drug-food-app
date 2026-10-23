@@ -17,6 +17,7 @@ function mapInteraction(
     sourceUrl: string | null;
     food: {
       id: string; nameKo: string; nameEn: string; category: string; nutrients: string[];
+      examples: string[];
     };
   },
   lang: 'ko' | 'en',
@@ -29,6 +30,8 @@ function mapInteraction(
       nameEn: interaction.food.nameEn,
       category: interaction.food.category,
       nutrients: interaction.food.nutrients,
+      // 범주 음식의 대표 식품. "비타민K" 한 줄이 시금치·케일까지 덮는다.
+      examples: interaction.food.examples,
     },
     riskLevel: interaction.riskLevel,
     // 추출한 행은 영문이 없다. null 을 내려주면 영어 사용자에게 설명이

@@ -5,7 +5,7 @@ import { RiskBadge } from './risk-badge';
 
 export interface Interaction {
   id: string;
-  food: { nameKo: string; nameEn: string; category: string };
+  food: { nameKo: string; nameEn: string; category: string; examples: string[] };
   riskLevel: 'caution' | 'warning' | 'contraindicated';
   reason: string;
   sideEffects: string | null;
@@ -25,6 +25,19 @@ function itemSeq(source: string) {
 // DB 의 sourceUrl 은 데이터를 받은 API 엔드포인트라서 클릭해도 쓸모가 없다.
 // ponytail: URL 형태를 코드에 적어 뒀다. 바뀌면 링크만 죽고 출처 표기는 남는다.
 const MFDS_ITEM = 'https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=';
+
+/**
+ * 범주 음식의 대표 식품. 허가사항은 "비타민 K, 지방, 야채류 섭취"처럼 범주로
+ * 쓰는데 사용자는 시금치를 먹을지를 묻는다. 개별 음식은 빈 배열이라 안 찍힌다.
+ */
+export function FoodExamples({ examples }: { examples: string[] }) {
+  if (examples.length === 0) return null;
+  return (
+    <p className="text-[11.5px] text-white/30" data-testid="food-examples">
+      예: {examples.join(' · ')}
+    </p>
+  );
+}
 
 export function SourceLine({ source }: { source: string }) {
   const seq = itemSeq(source);
@@ -109,6 +122,7 @@ export function InteractionReport({ interactions, summary }: InteractionReportPr
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <p className="text-white font-semibold">{item.food.nameKo}</p>
+                  <FoodExamples examples={item.food.examples} />
                   {item.drugName && <p className="text-[12px] text-white/40 mt-0.5">{item.drugName}</p>}
                 </div>
                 <RiskBadge level={item.riskLevel} />

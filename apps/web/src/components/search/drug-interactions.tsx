@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-import { SourceLine } from '@/components/analysis/interaction-report';
+import { FoodExamples, SourceLine } from '@/components/analysis/interaction-report';
 import type { Interaction } from '@/components/analysis/interaction-report';
 import { RiskBadge } from '@/components/analysis/risk-badge';
 import { interactionApi } from '@/lib/api-client';
@@ -42,7 +42,10 @@ export function DrugInteractions({ drugId }: { drugId: string }) {
         {data.map((item) => (
           <div key={item.id} className="px-4 py-3.5" data-testid={`si-${item.id}`}>
             <div className="mb-1.5 flex items-start justify-between gap-3">
-              <p className="text-[14px] font-semibold text-white">{item.food.nameKo}</p>
+              <div>
+                <p className="text-[14px] font-semibold text-white">{item.food.nameKo}</p>
+                <FoodExamples examples={item.food.examples} />
+              </div>
               <RiskBadge level={item.riskLevel} />
             </div>
             <p className="text-[12.5px] leading-relaxed text-white/50">{item.reason}</p>

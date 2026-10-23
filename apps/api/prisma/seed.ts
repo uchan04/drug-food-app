@@ -159,7 +159,12 @@ const DRUGS = [
 // SEED DATA: Foods (8 categories, 30+ items)
 // ============================================
 
-const FOODS = [
+// examples 는 범주 음식에만 있다. 배열 리터럴만 두면 TS 가 항목마다 다른
+// 타입으로 추론해서 food.examples 접근이 막힌다.
+const FOODS: {
+  id: string; nameKo: string; nameEn: string; category: string;
+  nutrients: string[]; examples?: string[];
+}[] = [
   // 과일
   { id: 'f001', nameKo: '바나나', nameEn: 'Banana', category: '과일', nutrients: ['칼륨', '비타민B6'] },
   { id: 'f002', nameKo: '자몽', nameEn: 'Grapefruit', category: '과일', nutrients: ['비타민C', '푸라노쿠마린'] },
@@ -210,8 +215,16 @@ const FOODS = [
   { id: 'f042', nameKo: '아연', nameEn: 'Zinc', category: '보충제', nutrients: ['아연'] },
   { id: 'f043', nameKo: '철분', nameEn: 'Iron', category: '보충제', nutrients: ['철분'] },
   { id: 'f044', nameKo: '지방', nameEn: 'Dietary Fat', category: '기타', nutrients: ['지방'] },
+  // examples 를 붙이지 않는다. 와파린은 같은 문장에서 야채와 비타민K 를 둘 다
+  // 뽑아서 두 행이 나란히 뜬다. 양쪽에 대표 식품을 달면 같은 목록이 두 번 보인다.
+  // 이름만으로 뜻이 통하는 범주에는 안 붙인다.
   { id: 'f045', nameKo: '야채', nameEn: 'Vegetables', category: '채소', nutrients: ['비타민K', '식이섬유'] },
   { id: 'f046', nameKo: '세인트존스워트', nameEn: "St. John's Wort", category: '건강기능식품', nutrients: ['하이퍼리신'] },
+  // 와파린 허가사항이 "비타민 K, 지방, 야채류 섭취"로 쓰는 범주다. 대표 식품은
+  // 손으로 적어 둔 와파린 행에 있던 것들이다 — 같은 사실을 출처 있는 행 하나로
+  // 덮는다. 청국장·김치는 야채가 아니지만 비타민K 식품이라 여기 들어간다.
+  { id: 'f047', nameKo: '비타민K', nameEn: 'Vitamin K', category: '영양소', nutrients: ['비타민K'],
+    examples: ['시금치', '케일', '브로콜리', '양배추', '청국장', '콩가루', '김치', '녹차'] },
 ];
 
 // 중복이라 은퇴시킨 Food. 알코올을 종류별로(소주/맥주/와인) 쪼개고 자몽과
@@ -736,8 +749,9 @@ async function main() {
         nameEn: food.nameEn,
         category: food.category,
         nutrients: food.nutrients,
+        examples: food.examples ?? [],
       },
-      create: food,
+      create: { ...food, examples: food.examples ?? [] },
     });
   }
   console.info(`✅ Seeded ${FOODS.length} foods`);

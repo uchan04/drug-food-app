@@ -11,6 +11,8 @@ export interface FoodItem {
   nameEn: string;
   category: string;
   nutrients: string[];
+  /** 범주 음식의 대표 식품 ("비타민K" -> 시금치, 케일...). 개별 음식은 빈 배열. */
+  examples: string[];
 }
 
 /** Food detail (full info) */

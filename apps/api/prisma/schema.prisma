@@ -104,6 +104,11 @@ model Food {
   nameEn    String   @map("name_en")
   category  String
   nutrients String[]
+  // 범주 음식의 대표 식품. 식약처 허가사항은 "비타민 K, 지방, 야채류 섭취"처럼
+  // 범주로 쓰는데, 사용자는 시금치를 먹을지 말지를 묻는다. 범주 행 하나에
+  // 대표 식품을 붙여 두면 출처 있는 근거 하나로 여러 식품을 덮을 수 있다.
+  // 개별 음식에는 비어 있다.
+  examples  String[] @default([])
   createdAt DateTime @default(now()) @map("created_at")
 
   // Relations
