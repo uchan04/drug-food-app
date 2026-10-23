@@ -446,71 +446,13 @@ const INTERACTIONS = [
     sideEffectsEn: 'Increased gout flare-up risk',
     timeGapHours: null,
   },
-  // === 항응고제 + 비타민K 식품/발효식품 ===
-  {
-    ingredientId: 'i011', foodId: 'f007', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '시금치의 비타민 K가 와파린의 항응고 작용을 직접적으로 길항합니다.',
-    reasonEn: 'Vitamin K in spinach directly antagonizes warfarin anticoagulant action.',
-    sideEffectsKo: '혈전 형성 위험 증가, 뇌졸중/심근경색 위험',
-    sideEffectsEn: 'Increased thrombosis risk, stroke/MI risk',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f008', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '케일은 비타민 K 함량이 매우 높아 와파린 효과를 크게 감소시킵니다.',
-    reasonEn: 'Kale has very high vitamin K content, significantly reducing warfarin effect.',
-    sideEffectsKo: '약효 저하, 혈전 위험',
-    sideEffectsEn: 'Reduced efficacy, thrombosis risk',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f009', riskLevel: RiskLevel.warning,
-    reasonKo: '브로콜리의 비타민 K가 와파린과 상호작용할 수 있습니다.',
-    reasonEn: 'Vitamin K in broccoli may interact with warfarin.',
-    sideEffectsKo: '약효 변동 가능',
-    sideEffectsEn: 'Possible efficacy fluctuation',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f014', riskLevel: RiskLevel.warning,
-    reasonKo: '콩가루에 포함된 비타민 K가 와파린의 효과를 부분적으로 감소시킬 수 있습니다.',
-    reasonEn: 'Vitamin K in soybean powder may partially reduce warfarin effectiveness.',
-    sideEffectsKo: '약효 부분 감소',
-    sideEffectsEn: 'Partial reduction in drug efficacy',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f020', riskLevel: RiskLevel.warning,
-    reasonKo: '양배추의 비타민 K가 와파린 효과를 감소시킬 수 있습니다.',
-    reasonEn: 'Vitamin K in cabbage may reduce warfarin effectiveness.',
-    sideEffectsKo: '항응고 효과 감소',
-    sideEffectsEn: 'Reduced anticoagulant effect',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f024', riskLevel: RiskLevel.warning,
-    reasonKo: '녹차에 비타민 K가 함유되어 있어 와파린 효과를 방해할 수 있습니다.',
-    reasonEn: 'Green tea contains vitamin K which may interfere with warfarin.',
-    sideEffectsKo: '항응고 효과 감소',
-    sideEffectsEn: 'Reduced anticoagulant effect',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f029', riskLevel: RiskLevel.warning,
-    reasonKo: '김치에 비타민 K가 포함되어 와파린 약효에 영향을 줄 수 있습니다.',
-    reasonEn: 'Kimchi contains vitamin K which may affect warfarin efficacy.',
-    sideEffectsKo: '약효 변동',
-    sideEffectsEn: 'Efficacy fluctuation',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i011', foodId: 'f031', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '청국장의 비타민 K2와 나토키나제가 와파린 효과를 크게 변화시킵니다.',
-    reasonEn: 'Vitamin K2 and nattokinase in cheonggukjang significantly alter warfarin effect.',
-    sideEffectsKo: '출혈 위험 또는 혈전 위험 (예측 불가)',
-    sideEffectsEn: 'Bleeding risk or thrombosis risk (unpredictable)',
-    timeGapHours: null,
-  },
+  // === 항응고제 ===
+  // 비타민K 식품(시금치·케일·브로콜리·양배추·청국장·콩가루·김치·녹차) 9행은
+  // 지웠다. 식약처 허가사항에서 추출한 '와파린 x 비타민K' 한 행이 같은 사실을
+  // 출처와 함께 덮는다 (Food.examples 가 대표 식품을 보여준다). 배지가
+  // 금기 -> 주의로 내려가는데, 허가사항 원문이 그 수준으로 쓰여 있고
+  // 보여주는 문장보다 배지를 높이면 어긋난다.
+  // 마늘/생강/크랜베리는 비타민K 가 아니라 항혈소판 기전이라 남긴다.
   {
     ingredientId: 'i011', foodId: 'f021', riskLevel: RiskLevel.caution,
     reasonKo: '마늘이 와파린의 항응고 효과를 증강시켜 출혈 위험을 높일 수 있습니다.',
@@ -533,14 +475,6 @@ const INTERACTIONS = [
     reasonEn: 'Cranberry interferes with warfarin metabolism, increasing bleeding risk.',
     sideEffectsKo: '출혈 위험 증가, INR 상승',
     sideEffectsEn: 'Increased bleeding risk, elevated INR',
-    timeGapHours: null,
-  },
-  {
-    ingredientId: 'i012', foodId: 'f007', riskLevel: RiskLevel.contraindicated,
-    reasonKo: '와파린 나트륨도 비타민 K에 의해 길항됩니다.',
-    reasonEn: 'Warfarin sodium is also antagonized by vitamin K.',
-    sideEffectsKo: '혈전 형성 위험 증가',
-    sideEffectsEn: 'Increased thrombosis risk',
     timeGapHours: null,
   },
   // === 당뇨약 + 알코올 ===
