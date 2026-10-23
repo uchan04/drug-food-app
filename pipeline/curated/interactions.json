@@ -2275,7 +2275,7 @@
       "ingredient": "시프로플록사신",
       "food": "우유",
       "riskLevel": "warning",
-      "keyword": "유제품",
+      "keyword": "우유",
       "reasonKo": "4) 유제품 또는 무기질 강화음료(예, 우유, 요구르트, 칼슘강화 오렌지주스)와 이 약을 병용투여하는 경우 이 약의 흡수가 감소하기 때문에 병용하지 않는 것이 바람직하다.",
       "source": "mfds:permit:198801052",
       "sourceUrl": "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService08/getDrugPrdtPrmsnDtlInq08",

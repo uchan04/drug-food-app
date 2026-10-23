@@ -42,20 +42,25 @@ async function main() {
   const payload: Payload = JSON.parse(readFileSync(DATA, 'utf-8'));
   const before = await prisma.interaction.count({ where: { source: 'seed:manual' } });
 
-  // 1. seed 에 없는 음식을 만든다. 보통은 seed 가 Food 어휘를 다 갖고 있어서
-  //    0개다. 0이 아니면 사전에 없던 음식이 나왔다는 신호다.
-  //    nameKo 가 유니크(마이그레이션 0005)라서 upsert 로 끝난다. 찾아본 뒤
-  //    만드는 구조였을 때는 같은 이름의 Food 가 두 행씩 생겼다.
-  let newFoods = 0;
+  // 1. 음식은 전부 seed 에 있어야 한다. seed 가 Food 어휘의 주인이다.
+  //
+  //    전에는 없으면 여기서 만들었다. 그러면 파이프라인이 seed 와 조금 다른
+  //    이름을 쓰기 시작했을 때("식이섬유" vs "고섬유 식품", 은퇴시킨 "소주")
+  //    같은 뜻의 Food 가 조용히 두 개가 된다. 알코올이 두 행으로 쪼개져
+  //    타이레놀에 알코올 항목이 4개 나왔던 사고가 그것이다 (마이그레이션 0005).
+  //    로그 한 줄로는 아무도 안 본다. 멈추는 쪽이 맞다.
+  const missing: string[] = [];
   for (const food of payload.foods) {
-    const existed = await prisma.food.count({ where: { nameKo: food.nameKo } });
-    await prisma.food.upsert({
-      where: { nameKo: food.nameKo },
-      // 이름이 같으면 seed 의 메타데이터를 그대로 둔다. seed 가 어휘의 주인이다.
-      update: {},
-      create: food,
-    });
-    if (existed === 0) newFoods += 1;
+    if ((await prisma.food.count({ where: { nameKo: food.nameKo } })) === 0) {
+      missing.push(food.nameKo);
+    }
+  }
+  if (missing.length > 0) {
+    throw new Error(
+      `seed 에 없는 Food ${missing.length}개: ${missing.join(', ')}\n` +
+        'prisma/seed.ts 의 FOODS 에 추가하거나, 기존 음식의 다른 이름이면 ' +
+        'pipeline/normalize.py 의 FOOD_ALIAS 로 접으세요.',
+    );
   }
 
   // 2. 상호작용을 적재한다. 같은 성분명이 여러 약에 걸려 있으면 모두에 넣는다
@@ -106,7 +111,6 @@ async function main() {
   const sourced = await prisma.interaction.count({ where: { source: { startsWith: 'mfds:' } } });
   const total = await prisma.interaction.count();
 
-  console.info(`새 Food ${newFoods}개`);
   console.info(`적재 ${upserted}행 (제안 ${payload.interactions.length}건)`);
   console.info(
     `상호작용 ${total}행: 출처 있음 ${sourced} / 출처 없음(seed:manual) ${after} ` +
