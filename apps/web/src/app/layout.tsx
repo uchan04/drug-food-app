@@ -1,12 +1,23 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import { Providers } from './providers';
 import { Header } from '@/components/layout/header';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800', '900'] });
+// next/font/google 은 **빌드 시점에** 구글에서 폰트를 받는다. CI 러너에서 그게
+// 간헐적으로 실패해 Build job 이 내 변경과 무관하게 깨졌다
+// ("An error occured in `next/font`. TypeError: Cannot read properties of null").
+// 파일을 저장소에 두면 빌드가 네트워크를 타지 않는다.
+//
+// 가변 폰트 한 파일(48KB, latin 서브셋)이 400~900 을 다 덮는다. 받아 둔 것은
+// next/font/google 이 쓰던 바로 그 파일이다 (fonts.gstatic.com Inter v20 latin).
+const inter = localFont({
+  src: './fonts/Inter-latin.woff2',
+  weight: '400 900',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'MFCC — Medicine-Food Commercial Checker',
