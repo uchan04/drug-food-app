@@ -2,9 +2,45 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { PrismaService } from '../prisma/prisma.service';
 
+import { queryKind, transcribe } from './hangul';
+
 @Injectable()
 export class DrugService {
   constructor(private readonly prisma: PrismaService) {}
+
+  /**
+   * 초성·영타 질의를 약품명에 맞춘다. 해당 표기가 아니면 빈 배열이다.
+   *
+   * trigram 은 이것을 못 잡는다 — "ㅌㅇㄹㄴ" 과 "타이레놀" 은 글자를 하나도
+   * 공유하지 않아 similarity 가 0 이고, 임계값을 낮춰도 안 잡힌다. 그래서
+   * 이름 쪽을 같은 표기로 바꿔서 접두어로 맞춘다.
+   *
+   * ponytail: 이름을 전부 읽어 메모리에서 거른다. 약 26개·성분 26개라 한 번에
+   * 읽는 편이 가장 짧다. 품목이 수만 건이 되면 choseong/qwerty 생성 열 +
+   * 인덱스(또는 pg_trgm 을 그 열에)로 옮긴다.
+   */
+  private async altMatch(query: string, lang: 'ko' | 'en') {
+    const kind = lang === 'ko' ? queryKind(query) : null;
+    if (!kind) return [];
+
+    const q = query.replace(/\s/g, '').toLowerCase();
+    const names = await this.prisma.$queryRawUnsafe<
+      Array<{ id: string; name: string; type: 'product' | 'ingredient' }>
+    >(
+      `
+      SELECT id, name_ko AS name, 'product' AS type FROM drugs
+      UNION ALL
+      SELECT drug_id AS id, name_ko AS name, 'ingredient' AS type FROM drug_ingredients
+      `,
+    );
+
+    return names
+      .map((r) => ({ ...r, key: transcribe(r.name, kind) }))
+      .filter((r) => r.key.length > 0 && r.key.startsWith(q))
+      // 짧은 이름이 먼저다. 질의와 길이가 같은 것(정확히 그 이름)이 1위가 된다.
+      .sort((a, b) => a.key.length - b.key.length || a.name.localeCompare(b.name))
+      .filter((r, i, all) => all.findIndex((x) => x.id === r.id) === i);
+  }
 
   async getAll() {
     const drugs = await this.prisma.drug.findMany({
@@ -33,6 +69,10 @@ export class DrugService {
     const sanitizedQuery = query.trim().slice(0, 100);
     const offset = (page - 1) * limit;
     const nameField = lang === 'ko' ? 'name_ko' : 'name_en';
+
+    // 초성·영타는 trigram 이 0 점을 주므로 이름 변환으로 따로 맞춘다.
+    // 그 표기가 아니면 빈 배열이고 아래 질의는 지금까지와 똑같이 돈다.
+    const altIds = (await this.altMatch(sanitizedQuery, lang)).map((r) => r.id);
 
     // Trigram similarity search on drugs and ingredients
     const results = await this.prisma.$queryRawUnsafe<
@@ -70,6 +110,7 @@ export class DrugService {
           SELECT 1 FROM drug_ingredients di
           WHERE di.drug_id = d.id AND similarity(di.${nameField}, $1) > 0.1
         )
+        OR d.id = ANY($4::text[])
       -- DISTINCT ON (d.id) 가 있었다. FROM 절에 JOIN 이 없고 성분 매칭은 상관
       -- 스칼라 서브쿼리라서 약마다 행이 하나뿐이고, 지울 중복이 애초에 없었다.
       -- 그런데 Postgres 는 DISTINCT ON 식을 ORDER BY 맨 앞에 요구하므로
@@ -78,12 +119,16 @@ export class DrugService {
       -- 타이레놀 d009 보다 먼저 나왔다). 측정값: R@1 0.782 -> 1.000.
       -- d.id 는 동점 처리용이다. 전순서가 없으면 OFFSET 페이징에서 행이
       -- 중복되거나 누락된다.
-      ORDER BY similarity DESC, d.id
+      -- array_position 은 altMatch 가 매긴 순서다. 빈 배열이면 전부 0 이라
+      -- 기존 정렬에 아무 영향이 없다. 초성 질의일 때는 similarity 가 전부 0
+      -- 이라 이 열이 사실상 정렬을 맡는다.
+      ORDER BY similarity DESC, COALESCE(array_position($4::text[], d.id), 0), d.id
       LIMIT $2 OFFSET $3
       `,
       sanitizedQuery,
       limit,
       offset,
+      altIds,
     );
 
     // Count total
@@ -97,8 +142,10 @@ export class DrugService {
           SELECT 1 FROM drug_ingredients di
           WHERE di.drug_id = d.id AND similarity(di.${nameField}, $1) > 0.1
         )
+        OR d.id = ANY($2::text[])
       `,
       sanitizedQuery,
+      altIds,
     );
 
     const total = Number(countResult[0]?.count || 0);
@@ -128,6 +175,13 @@ export class DrugService {
 
     const sanitizedQuery = query.trim().slice(0, 100);
     const nameField = lang === 'ko' ? 'name_ko' : 'name_en';
+
+    // 초성·영타면 trigram 쪽은 전부 임계값 미만이라 빈 목록이 된다.
+    // 드롭다운은 1위가 전부라서 변환 매칭 결과를 그대로 쓴다.
+    const alt = await this.altMatch(sanitizedQuery, lang);
+    if (alt.length > 0) {
+      return alt.slice(0, limit).map(({ id, name, type }) => ({ id, name, type }));
+    }
 
     // Drug name matches
     const drugs = await this.prisma.$queryRawUnsafe<
