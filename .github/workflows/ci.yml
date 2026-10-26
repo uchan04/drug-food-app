@@ -68,6 +68,12 @@ jobs:
       - name: Search eval
         run: pnpm --filter api eval:search -- --check
 
+      # 홈 화면이 이 파일의 숫자를 띄운다. 측정값이 바뀌었는데 커밋을 안 했으면
+      # 화면만 옛날 숫자로 남는다. eval:search 는 search 키만 쓰므로 여기서
+      # 걸리는 차이는 검색 쪽 드리프트다.
+      - name: metrics.json 이 최신인가
+        run: git diff --exit-code pipeline/eval/metrics.json
+
       - name: Lint
         run: pnpm lint
 
@@ -152,3 +158,8 @@ jobs:
       - name: Extraction eval
         working-directory: pipeline
         run: python3 score.py --check
+
+      # score.py 는 extraction/risk 키만 쓴다. 규칙을 고쳐 수치가 바뀌었는데
+      # 커밋하지 않으면 홈 화면이 옛날 숫자를 띄운 채로 남는다.
+      - name: metrics.json 이 최신인가
+        run: git diff --exit-code pipeline/eval/metrics.json
