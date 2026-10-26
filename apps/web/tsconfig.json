@@ -3,7 +3,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@drug-food-checker/shared-types": ["../../packages/shared-types/src"]
+      "@drug-food-checker/shared-types": ["../../packages/shared-types/src"],
+      "@metrics": ["../../pipeline/eval/metrics.json"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
