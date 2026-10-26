@@ -34,6 +34,7 @@ risk 열은 위험도 라벨이다. 양성 행에만 있다. 재는 것은 임�
 
 import csv
 import hashlib
+import json
 import sys
 from pathlib import Path
 
@@ -41,6 +42,7 @@ import extract
 import normalize
 
 LABELS = Path(__file__).parent / "eval" / "labels.tsv"
+METRICS = Path(__file__).parent / "eval" / "metrics.json"
 
 
 def split_of(ingredient):
@@ -198,6 +200,26 @@ MIN_ESC_PRECISION = 0.95
 MIN_ESC_RECALL = 0.70
 
 
+def num(x):
+    """JSON 숫자 표기를 search-eval.ts 와 맞춘다. JS 는 1.0 을 1 로 쓰는데
+    파이썬은 1.0 으로 쓴다. 두 writer 의 표기가 다르면 같은 수치인데도
+    파일이 계속 바뀌어서 CI 의 metrics.json 최신 검사가 서로를 깨운다."""
+    x = round(x, 3)
+    return int(x) if x == int(x) else x
+
+
+def write_metrics(part):
+    """eval/metrics.json 을 갱신한다. 홈 화면이 이 파일을 읽는다.
+
+    화면 숫자를 손으로 적으면 규칙을 고쳤을 때 조용히 틀린 값이 남는다 —
+    여기서는 그게 포트폴리오의 내용이라 더 나쁘다. search 키는
+    `pnpm --filter api eval:search` 가 쓰므로 자기 키만 바꾼다.
+    """
+    cur = json.loads(METRICS.read_text(encoding="utf-8")) if METRICS.exists() else {}
+    cur.update(part)
+    METRICS.write_text(json.dumps(cur, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def check(rows):
     m = prf(rows, RULES)
     print(f"rules: precision={m['precision']:.3f} recall={m['recall']:.3f} f1={m['f1']:.3f} "
@@ -219,9 +241,28 @@ def check(rows):
     if r["esc_r"] < MIN_ESC_RECALL:
         bad.append(f"격상 재현율 {r['esc_r']:.3f} < {MIN_ESC_RECALL}")
 
+    b = prf(rows, BASELINE)
+    write_metrics({
+        "extraction": {
+            "labels": len(rows),
+            "positives": sum(r["y"] for r in rows),
+            "baseline_precision": num(b["precision"]),
+            "precision": num(m["precision"]),
+            "recall": num(m["recall"]),
+        },
+        "risk": {
+            "n": r["n"],
+            "acc": num(r["acc"]),
+            "esc_precision": num(r["esc_p"]),
+            "esc_recall": num(r["esc_r"]),
+            "over": r["over"],
+            "under": r["under"],
+        },
+    })
+
     if bad:
         sys.exit("규칙 퇴행: " + ", ".join(bad))
-    print("ok score")
+    print("ok score (eval/metrics.json 갱신)")
 
 
 if __name__ == "__main__":

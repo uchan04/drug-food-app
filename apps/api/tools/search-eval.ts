@@ -11,7 +11,7 @@
  *   pnpm --filter api eval:search
  *   pnpm --filter api eval:search -- --check   # 하한 미달이면 0 아닌 코드로 종료
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { PrismaClient } from '@prisma/client';
@@ -24,6 +24,9 @@ import { loadEnvFile } from './load-env';
 loadEnvFile(join(__dirname, '..', '.env'));
 
 const QUERIES = join(__dirname, 'search-queries.tsv');
+// 홈 화면이 읽는 측정값 파일. extraction/risk 키는 pipeline/score.py 가 쓴다.
+// 화면 숫자를 손으로 적으면 랭킹을 고쳤을 때 조용히 틀린 값이 남는다.
+const METRICS = join(__dirname, '..', '..', '..', 'pipeline', 'eval', 'metrics.json');
 // 상위 몇 개까지 보고 순위를 매길지. Recall@5 보다 넉넉히 둬서 정답이
 // 5위 밖 어디에 있는지도 MRR 에 반영된다.
 const DEPTH = 10;
@@ -136,6 +139,16 @@ async function main() {
       );
     }
   }
+
+  const prev = JSON.parse(readFileSync(METRICS, 'utf-8'));
+  prev.search = {
+    queries: all.n,
+    types: byType.size,
+    r1: Number(all.r1.toFixed(3)),
+    mrr: Number(all.mrr.toFixed(3)),
+    autocomplete_r1: Number(ac.r1.toFixed(3)),
+  };
+  writeFileSync(METRICS, `${JSON.stringify(prev, null, 2)}\n`, 'utf-8');
 
   if (process.argv.includes('--check')) {
     const bad: string[] = [];
